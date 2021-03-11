@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>让phpcms支持https - BK - Coding the world</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bearkchan" /><meta name="description" content="本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。 假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。 **1、如果已经安装" /><meta name="keywords" content="bearkchan, java, php" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/%E8%AE%A9phpcms%E6%94%AF%E6%8C%81https/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="让phpcms支持https" />
+<meta property="og:description" content="本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。 假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。 **1、如果已经安装" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/%E8%AE%A9phpcms%E6%94%AF%E6%8C%81https/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-02T00:29:44&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-02T00:29:44&#43;08:00" />
+
+<meta itemprop="name" content="让phpcms支持https">
+<meta itemprop="description" content="本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。 假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。 **1、如果已经安装"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="1368">
+<meta itemprop="keywords" content="php,https,phpcms," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="让phpcms支持https"/>
+<meta name="twitter:description" content="本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。 假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。 **1、如果已经安装"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">BK&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">BK&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">让phpcms支持https</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-02 </span>
+        <div class="post-category">
+            <a href="/categories/php/"> php </a>
+            </div>
+          <span class="more-meta"> 约 1368 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。</p>
+<p>假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。</p>
+<p>**1、如果已经安装好phpcms，则需要对caches/configs/system.php中的配置选项做替换，**将&quot;http://&ldquo;全部替换为&quot;https://&quot;。如有必要，数据库中已存在的链接也要完全替换为https开头。</p>
+<p><strong>2、程序修改部分：</strong>
+**（1）**修改phpcms/modules/admin/site.php 大约45行和128行的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">(&#39;/http:\/\/(.+)\/$/i&#39;, $domain))
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">(&#39;/(http|https):\/\/(.+)\/$/i&#39;, $domain))
+</code></pre></td></tr></table>
+</div>
+</div><p>**（2）**修改phpcms/modules/admin/templates/setting.tpl.php 大约18行中的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">http:\/\/(.+)[^/]$
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">http[s]?:\/\/(.+)[^/]$
+</code></pre></td></tr></table>
+</div>
+</div><p>**（3）**修改phpcms/modules/admin/templates/site_add.tpl.php 大约13行中的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">http:\/\/(.+)\/$
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">http[s]?:\/\/(.+)\/$
+</code></pre></td></tr></table>
+</div>
+</div><p>**（4）**修改phpcms/modules/admin/templates/site_edit.tpl.php 大约11行中的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">http:\/\/(.+)\/$
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">http[s]?:\/\/(.+)\/$
+</code></pre></td></tr></table>
+</div>
+</div><p>**（5）**修改phpcms/modules/link/index.php 大约41行和51行中的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/^http:\/\/(.*)/i
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/^http[s]?:\/\/(.*)/i
+</code></pre></td></tr></table>
+</div>
+</div><p>**（6）**修改phpcms/modules/link/templates/link_add.tpl.php 大约10行中的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;]*([^&lt;&gt;])*$
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">^http[s]?:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;]*([^&lt;&gt;])*$
+</code></pre></td></tr></table>
+</div>
+</div><p>**（7）**修改phpcms/modules/link/templates/link_edit.tpl.php 大约11行中的正则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;]*([^&lt;&gt;])*$
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">^http[s]?:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&amp;]*([^&lt;&gt;])*$
+</code></pre></td></tr></table>
+</div>
+</div><p>严格按照以上步骤修改后，注册用户 帐号登录等操作完全正常 和PHPSSO通信完全正常，后台添加信息和前台链接URL完全正常</p>
+<p>注意：
+a.如注册用户提示‘操作失败’，请在后台会员模块设置中关闭‘注册时可选会员模型’或者保证会员不少于两个会员模型</p>
+<p>b.在PHP5.6或以上的PHP版本中会出现和PHPSSO无法正常通信的情况，因为PHP5.6及以上fsockopen和file_get_contents等函数openssl需要验证目标的SSL证书是否可信，需要安装openssl根证书才可以，否则openssl会报警告信息 证书验证失败！
+如需在php5.6或以上版本中使用HTTPS的请参阅PHP官方有关php5.6和openssl的资料<a href="https://www.oschina.net/action/GoToLink?url=http%3A%2F%2Fphp.net%2Fmanual%2Fen%2Fmigration56.openssl.php">http://php.net/manual/en/migration56.openssl.php</a></p>
+<p><strong>3、经过上面修改后，phpcms中的内容可通过https访问，但分页出现错误。解决方法为：</strong>
+打开文件 phpcms\libs\functions \global.func.php ，找到738行的位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$url = str_replace(array(&#39;http://&#39;,&#39;//&#39;,&#39;~&#39;), array(&#39;~&#39;,&#39;/&#39;,&#39;http://&#39;), $url);
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$url = str_replace(array(&#39;https://&#39;,&#39;//&#39;,&#39;~&#39;), array(&#39;~&#39;,&#39;/&#39;,&#39;https://&#39;), $url);
+</code></pre></td></tr></table>
+</div>
+</div><p>经过以上三步，phpcms完美支持https，结合页面静态化和url伪静态规则，亲测静态页面也可用https。
+<strong>此时的网站实际上通过http和https都能访问</strong>，如果要强制全站跳转到https，请继续看另一篇博客 <strong><a href="https://my.oschina.net/codercpf/blog/3082342">Apache环境下强制跳转到https</a></strong></p>
+<p><strong>补充：</strong></p>
+<p>经过以上所有步骤后，出现新的问题：新闻列表页面点击标题跳转的URL会重复带有网站域名。<strong>解决方法如下：</strong>
+打开 phpcms\modules\content\templates\content_list.tpl.php，找到97行的位置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">strpos($r[&#39;url&#39;],&#39;http://&#39;)!==false
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">strpos($r[&#39;url&#39;],&#39;https://&#39;)!==false
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/php/">php</a>
+          <a href="/tags/https/">https</a>
+          <a href="/tags/phpcms/">phpcms</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/javaweb%E9%98%B6%E6%AE%B5/002-redis/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Redis的基本使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/readme/">
+            <span class="next-text nav-default"></span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:bearkchan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://github.com/bearkchan" class="iconfont icon-github" title="github"></a>
+  <a href="https://bearkchan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Bearkchan-<a href='https://beian.miit.gov.cn'>苏ICP备2020053789号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

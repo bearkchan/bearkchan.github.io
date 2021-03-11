@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>socket on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/socket/</link>
+    <description>Recent content in socket on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/socket/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中网络编程基础知识介绍</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/010-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/010-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
+      <description>InetAddress类的使用 实现网络通信需要解决的两个问题 如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。 找到主机后如何可靠高</description>
+    </item>
+    
+  </channel>
+</rss>

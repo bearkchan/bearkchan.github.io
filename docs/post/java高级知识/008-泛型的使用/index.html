@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java中泛型的使用 - BK - Coding the world</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bearkchan" /><meta name="description" content="泛型的理解 泛型的概念 所谓泛型，就是允也称为许在定义类、接口时通过一个标识表示类中的某个属性的类型或者是某个方法的返回值及参数类型。这个类型参" /><meta name="keywords" content="bearkchan, java, php" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/008-%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java中泛型的使用" />
+<meta property="og:description" content="泛型的理解 泛型的概念 所谓泛型，就是允也称为许在定义类、接口时通过一个标识表示类中的某个属性的类型或者是某个方法的返回值及参数类型。这个类型参" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/008-%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-02T00:29:44&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-02T00:29:44&#43;08:00" />
+
+<meta itemprop="name" content="Java中泛型的使用">
+<meta itemprop="description" content="泛型的理解 泛型的概念 所谓泛型，就是允也称为许在定义类、接口时通过一个标识表示类中的某个属性的类型或者是某个方法的返回值及参数类型。这个类型参"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="2943">
+<meta itemprop="keywords" content="java,泛型," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中泛型的使用"/>
+<meta name="twitter:description" content="泛型的理解 泛型的概念 所谓泛型，就是允也称为许在定义类、接口时通过一个标识表示类中的某个属性的类型或者是某个方法的返回值及参数类型。这个类型参"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">BK&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">BK&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java中泛型的使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-02 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> java </a>
+            </div>
+          <span class="more-meta"> 约 2943 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#泛型的理解">泛型的理解</a>
+          <ul>
+            <li><a href="#泛型的概念">泛型的概念</a></li>
+            <li><a href="#泛型的引入背景">泛型的引入背景</a></li>
+          </ul>
+        </li>
+        <li><a href="#泛型在集合中的使用">泛型在集合中的使用</a>
+          <ul>
+            <li><a href="#在集合中使用泛型之前的例子">在集合中使用泛型之前的例子</a></li>
+            <li><a href="#在集合中使用泛型例子1">在集合中使用泛型例子1</a></li>
+            <li><a href="#在集合中使用泛型例子2">在集合中使用泛型例子2</a></li>
+            <li><a href="#在集合中使用泛型总结">在集合中使用泛型总结</a></li>
+          </ul>
+        </li>
+        <li><a href="#自定义泛型泛型接口泛型方法">自定义泛型、泛型接口、泛型方法</a></li>
+        <li><a href="#泛型在继承上的体现">泛型在继承上的体现</a></li>
+        <li><a href="#通配符">通配符</a>
+          <ul>
+            <li><a href="#通配符的使用">通配符的使用</a></li>
+            <li><a href="#涉及通配符的集合的数据的写入和读取">涉及通配符的集合的数据的写入和读取</a></li>
+            <li><a href="#通配符使用的注意点">通配符使用的注意点</a></li>
+            <li><a href="#有限制条件的通配符的使用">有限制条件的通配符的使用</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="泛型的理解">泛型的理解</h2>
+<h3 id="泛型的概念">泛型的概念</h3>
+<p>所谓泛型，就是允也称为许在定义类、接口时通过一个标识表示类中的某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时（例如，继承或实现这个接口时，用这个类型声明变量、创建对象时确定[即传入实际的类型参数，也称为类型实参]）。</p>
+<h3 id="泛型的引入背景">泛型的引入背景</h3>
+<p>集合容器类在设计阶段/声明阶段不能确定这个容器到底实际存的是什么类型的 对象，所以在JDK1.5之前只能把元素类型设计为Object，JDK1.5之后使用泛型来 解决。因为这个时候除了元素的类型不确定 ，其他的部分是确定的，例如关于 这个元素如何保存 ，如何管理等是确定的，因此此时把元素的类型设计成一个 参数，这个类型参数叫做泛型。Collection<E>，List<E>，ArrayList<E> 这个<E>就 是类型参数，即泛型。</p>
+<h2 id="泛型在集合中的使用">泛型在集合中的使用</h2>
+<h3 id="在集合中使用泛型之前的例子">在集合中使用泛型之前的例子</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">* 在集合中使用泛型之前的情况
+</span><span class="cm">*/</span>
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">(){</span>
+  <span class="n">ArrayList</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
+  <span class="c1">// 需求：存放学生的成绩
+</span><span class="c1"></span>  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">78</span><span class="o">);</span>
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">76</span><span class="o">);</span>
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">82</span><span class="o">);</span>
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">88</span><span class="o">);</span>
+  <span class="c1">// 问题1:类型不安全
+</span><span class="c1"></span>  <span class="c1">//list.add(&#34;Tom&#34;);
+</span><span class="c1"></span>  <span class="k">for</span><span class="o">(</span><span class="n">Object</span> <span class="n">score</span><span class="o">:</span> <span class="n">list</span><span class="o">){</span>
+    <span class="c1">//问题2:强转时，可能出现ClassCastException
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">stuScore</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span><span class="o">)</span> <span class="n">score</span><span class="o">;</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stuScore</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://cdn.bearkchan.top/image-20210202121459757.png" alt="image-20210202121459757"></p>
+<h3 id="在集合中使用泛型例子1">在集合中使用泛型例子1</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//在集合中使用泛型的情况：以ArrayList为例
+</span><span class="c1"></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test2</span><span class="o">(){</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span>  <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">78</span><span class="o">);</span>
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">87</span><span class="o">);</span>
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">99</span><span class="o">);</span>
+  <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">65</span><span class="o">);</span>
+  <span class="c1">//编译时，就会进行类型检查，保证数据的安全
+</span><span class="c1"></span>  <span class="c1">//        list.add(&#34;Tom&#34;);
+</span><span class="c1"></span>
+  <span class="c1">//方式一：
+</span><span class="c1"></span>  <span class="c1">//        for(Integer score : list){
+</span><span class="c1"></span>  <span class="c1">//            //避免了强转操作
+</span><span class="c1"></span>  <span class="c1">//            int stuScore = score;
+</span><span class="c1"></span>  <span class="c1">//
+</span><span class="c1"></span>  <span class="c1">//            System.out.println(stuScore);
+</span><span class="c1"></span>  <span class="c1">//
+</span><span class="c1"></span>  <span class="c1">//        }
+</span><span class="c1"></span>  <span class="c1">//方式二：
+</span><span class="c1"></span>  <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+  <span class="k">while</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+    <span class="kt">int</span> <span class="n">stuScore</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stuScore</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="http://cdn.bearkchan.top/image-20210202121939089.png" alt="image-20210202121939089"></p>
+<h3 id="在集合中使用泛型例子2">在集合中使用泛型例子2</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java">
+<span class="c1">//在集合中使用泛型的情况：以HashMap为例
+</span><span class="c1"></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test3</span><span class="o">(){</span>
+  <span class="c1">//Map&lt;String,Integer&gt; map = new HashMap&lt;String,Integer&gt;();
+</span><span class="c1"></span>  <span class="c1">//jdk7新特性：类型推断
+</span><span class="c1"></span>  <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+
+  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;Tom&#34;</span><span class="o">,</span><span class="n">87</span><span class="o">);</span>
+  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;Jerry&#34;</span><span class="o">,</span><span class="n">87</span><span class="o">);</span>
+  <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;Jack&#34;</span><span class="o">,</span><span class="n">67</span><span class="o">);</span>
+
+  <span class="c1">//map.put(123,&#34;ABC&#34;);
+</span><span class="c1"></span>  <span class="c1">//泛型的嵌套
+</span><span class="c1"></span>  <span class="n">Set</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">entry</span> <span class="o">=</span> <span class="n">map</span><span class="o">.</span><span class="na">entrySet</span><span class="o">();</span>
+  <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+
+  <span class="k">while</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+    <span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+    <span class="n">String</span> <span class="n">key</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getKey</span><span class="o">();</span>
+    <span class="n">Integer</span> <span class="n">value</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">key</span> <span class="o">+</span> <span class="s">&#34;----&#34;</span> <span class="o">+</span> <span class="n">value</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="在集合中使用泛型总结">在集合中使用泛型总结</h3>
+<ul>
+<li>
+<p>集合接口或集合类在JDK5.0时修改为带泛型的结构。</p>
+</li>
+<li>
+<p>在实例化集合类时，可以指明具体的泛型类型。指明完之后，在集合类或接口中凡是定义类或者接口时，内部结构（比如：方法、构造器、属性等使用到类的泛型的位置，都指明为实例化的泛型类型）。</p>
+<p>比如：add(E e)&mdash;&mdash;&mdash;&mdash;&gt;实例化后：add(Integer e)</p>
+</li>
+<li>
+<p>泛型的类型必须时类，不能时基本数据类型，如果要用到基本数据类型的地方，需要使用其包装类类型替代。</p>
+</li>
+<li>
+<p>如果实例化时没有指明泛型的类型，默认类型为java.lang.Object类型。</p>
+</li>
+<li>
+<p>JDK7之后，可以使用类型推断：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 原来：
+</span><span class="c1"></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+<span class="c1">// JDK7之后：
+</span><span class="c1"></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="自定义泛型泛型接口泛型方法">自定义泛型、泛型接口、泛型方法</h2>
+<ol>
+<li>
+<p>泛型类可能有多个参数，此时应将多个参数一起放在尖括号内。比如： &lt;E1,E2,E3&gt;</p>
+</li>
+<li>
+<p>泛型类的构造器如下：public GenericClass(){}。 而下面是错误的：public GenericClass<E>(){}</p>
+</li>
+<li>
+<p>实例化后，操作原来泛型位置的结构必须与指定的泛型类型一致。</p>
+</li>
+<li>
+<p>泛型不同的引用不能相互赋值。</p>
+</li>
+</ol>
+<blockquote>
+<p>尽管在编译时ArrayList<String>和ArrayList<Integer>是两种类型，但是，在运行时只有 一个ArrayList被加载到JVM中。</p>
+</blockquote>
+<ol start="5">
+<li>
+<p>泛型如果不指定，将被擦除，泛型对应的类型均按照Object处理，但不等价 于Object。经验：泛型要使用一路都用。要不用，一路都不要用。</p>
+</li>
+<li>
+<p>如果泛型结构是一个接口或抽象类，则不可创建泛型类的对象。</p>
+</li>
+<li>
+<p>jdk1.7，泛型的简化操作：ArrayList<Fruit> flist = new ArrayList&lt;&gt;();</p>
+</li>
+<li>
+<p>泛型的指定中不能使用基本数据类型，可以使用包装类替换。</p>
+</li>
+<li>
+<p>在类/接口上声明的泛型，在本类或本接口中即代表某种类型，可以作为非静态 属性的类型、非静态方法的参数类型、非静态方法的返回值类型。但在静态方法中不能使用类的泛型。</p>
+</li>
+<li>
+<p>异常类不能是泛型的</p>
+</li>
+<li>
+<p>不能使用new E[]。但是可以：E[] elements = (E[])new Object[capacity];</p>
+</li>
+</ol>
+<blockquote>
+<p>需要先定义为Object类型，再进行类型强转成E类型的。</p>
+<p>参考：ArrayList源码中声明：Object[] elementData，而非泛型参数类型数组。</p>
+</blockquote>
+<ol start="12">
+<li>父类有泛型，子类可以选择保留泛型也可以选择指定泛型类型：</li>
+</ol>
+<ul>
+<li>
+<p>子类不保留父类的泛型：按需实现</p>
+<ul>
+<li>没有类型 擦除</li>
+<li>具体类型</li>
+</ul>
+</li>
+<li>
+<p>子类保留父类的泛型：泛型子类</p>
+<ul>
+<li>全部保留</li>
+<li>部分保留</li>
+</ul>
+</li>
+</ul>
+<p>结论：子类必须是“富二代”，子类除了指定或保留父类的泛型，还可以增加自 己的泛型</p>
+<ol start="13">
+<li>
+<p>泛型方法的使用：在方法中出现了泛型的结构，泛型参数与类的泛型参数没有关系。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 定义泛型方法需要在前面声明泛型类型,并使用尖括号包裹起来：&lt;E&gt;
+</span><span class="c1"></span><span class="kd">public</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">copyFromArrayList</span><span class="o">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">arr</span><span class="o">){</span>
+      
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="泛型在继承上的体现">泛型在继承上的体现</h2>
+<p>如果B时A的一个子类型（子类或者子接口），而G时具有泛型声明的类或接口，则G<B>并不是G<A>的子类型！</p>
+<p>即G<A>和G<B>二者不具备子父类的关系，二者是并列关系。</p>
+<p>比如：String是Object的子类，但是List<String>并不是List<Object>的子类。</p>
+<p><img src="http://cdn.bearkchan.top/image-20210202133500525.png" alt="image-20210202133500525"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGenericAndSubClass</span><span class="o">()</span> <span class="o">{</span> 
+  <span class="n">Person</span><span class="o">[]</span> <span class="n">persons</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+  <span class="n">Man</span><span class="o">[]</span> <span class="n">mans</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+  <span class="c1">// 而 Person[] 是 Man[] 的父类. 
+</span><span class="c1"></span>  <span class="n">persons</span> <span class="o">=</span> <span class="n">mans</span><span class="o">;</span>
+	<span class="n">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="n">mans</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+  
+  
+	<span class="c1">// 在泛型的集合上 
+</span><span class="c1"></span>  <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">personList</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+  <span class="n">List</span><span class="o">&lt;</span><span class="n">Man</span><span class="o">&gt;</span> <span class="n">manList</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="c1">// personList = manList;(报错)
+</span><span class="c1"></span>  <span class="c1">// List&lt;Person&gt;和List&lt;Man&gt;二者没有任何关系。
+</span><span class="c1"></span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="通配符">通配符</h2>
+<h3 id="通配符的使用">通配符的使用</h3>
+<p>使用类型通配符：<code>?</code>。</p>
+<p>比如：<code>List&lt;?&gt;</code>,<code>Map&lt;?,?&gt;</code>等。List&lt;?&gt;是List<String>、List<Object>等各种泛型List的父类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;?&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">list2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">list</span> <span class="o">=</span> <span class="n">list1</span><span class="o">;</span> <span class="c1">// 成立
+</span><span class="c1"></span><span class="n">list</span> <span class="o">=</span> <span class="n">list2</span><span class="o">;</span> <span class="c1">// 成立
+</span><span class="c1">// list2 = list1; // 不成立
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="涉及通配符的集合的数据的写入和读取">涉及通配符的集合的数据的写入和读取</h3>
+<ul>
+<li>
+<p>读取</p>
+<p>读取List&lt;?&gt;的对象list中的元素时，永远是安全的，因为不管?代表的是什么类型，它总是包含有Object的。</p>
+</li>
+<li>
+<p>写入</p>
+<p>无法写入list中的元素，因为我们并不知道list的元素类型，无法添加确认的元素对象。</p>
+<blockquote>
+<p>唯一例外的是null，它是所有类型的成员。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;?&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<h3 id="通配符使用的注意点">通配符使用的注意点</h3>
+<ol>
+<li>
+<p>不能用在泛型方法声明上，返回值类型前面&lt;&gt;不能使用?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;?&gt;</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">(</span><span class="n">ArrayList</span><span class="o">&lt;?&gt;</span> <span class="n">list</span><span class="o">){</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>不能用在泛型类的声明上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">GenericTypeClass</span><span class="o">&lt;?&gt;{</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>不能用在创建对象上市，右边属于创建集合对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ArrayList</span><span class="o">&lt;?&gt;</span> <span class="n">list2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;?&gt;();</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="有限制条件的通配符的使用">有限制条件的通配符的使用</h3>
+<ul>
+<li>
+<?>：允许所有泛型的引用调用
+</li>
+<li>
+<p>上限extends：使用时指定的类型必须是继承某个类，或者实现某个接口，即&lt;=</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Number</span><span class="o">&gt;</span> <span class="o">(</span><span class="n">无穷小</span> <span class="o">,</span> <span class="n">Number</span><span class="o">]</span>
+<span class="n">只允许泛型为Number及Number子类的引用调用</span>                   
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>下限super：使用指定的类型不能小于操作的类，即&gt;=</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Number</span><span class="o">&gt;</span>  <span class="o">[</span><span class="n">Number</span><span class="o">,</span><span class="n">无穷大</span><span class="o">]</span>
+<span class="n">只允许泛型为Number及Number父类的引用调用</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printCollection3</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Person</span><span class="o">&gt;</span> <span class="n">coll</span><span class="o">)</span> <span class="o">{</span> 
+  <span class="c1">//Iterator只能用Iterator&lt;?&gt;或Iterator&lt;? extends Person&gt;.why? 
+</span><span class="c1"></span>  <span class="n">Iterator</span><span class="o">&lt;?&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span> 
+  <span class="k">while</span> <span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span> 
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">());</span> 
+  <span class="o">}</span> 
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printCollection4</span><span class="o">(</span><span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Person</span><span class="o">&gt;</span> <span class="n">coll</span><span class="o">)</span> <span class="o">{</span> 
+  <span class="c1">//Iterator只能用Iterator&lt;?&gt;或Iterator&lt;? super Person&gt;.why? 
+</span><span class="c1"></span>  <span class="n">Iterator</span><span class="o">&lt;?&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span> 
+  <span class="k">while</span> <span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">());</span> 
+  <span class="o">}</span> 
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>【练习题】</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">addStrings</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">){</span>
+     <span class="c1">// 编译失败：形参list必须是Object或者是Object的子类，那么用户传来的类型可能是无穷小，比Object小很多很多，这个时候就不能添加Object对象了。
+</span><span class="c1"></span>     <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">A</span><span class="o">());</span>
+     <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addString</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">){</span>
+    <span class="c1">// 编译成功：形参list必须是Object或者比Object大，那么用户传来的类型不管怎么样都是Object或者其父类，比Object大，所以可以添加其子类类型。
+</span><span class="c1"></span>    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">A</span><span class="o">());</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          <a href="/tags/%E6%B3%9B%E5%9E%8B/">泛型</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/009-io%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java中IO类的使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/007-%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8/">
+            <span class="next-text nav-default">Java中注解的使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:bearkchan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://github.com/bearkchan" class="iconfont icon-github" title="github"></a>
+  <a href="https://bearkchan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Bearkchan-<a href='https://beian.miit.gov.cn'>苏ICP备2020053789号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

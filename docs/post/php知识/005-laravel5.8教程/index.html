@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Laravel5.8教程 - BK - Coding the world</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bearkchan" /><meta name="description" content="一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf" /><meta name="keywords" content="bearkchan, java, php" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/005-laravel5.8%E6%95%99%E7%A8%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Laravel5.8教程" />
+<meta property="og:description" content="一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/005-laravel5.8%E6%95%99%E7%A8%8B/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-02T00:29:44&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-02T00:29:44&#43;08:00" />
+
+<meta itemprop="name" content="Laravel5.8教程">
+<meta itemprop="description" content="一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="7616">
+<meta itemprop="keywords" content="php,larval," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Laravel5.8教程"/>
+<meta name="twitter:description" content="一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">BK&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">BK&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Laravel5.8教程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-02 </span>
+        <div class="post-category">
+            <a href="/categories/php/"> php </a>
+            </div>
+          <span class="more-meta"> 约 7616 字 </span>
+          <span class="more-meta"> 预计阅读 16 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一目录结构">一、目录结构</a></li>
+        <li><a href="#二路由">二、路由</a>
+          <ul>
+            <li><a href="#1-路由分组">1. 路由分组</a></li>
+            <li><a href="#2-命令行查看现有路由">2. 命令行查看现有路由</a></li>
+            <li><a href="#3-路由别名">3. 路由别名</a></li>
+          </ul>
+        </li>
+        <li><a href="#三数据库增删改查">三、数据库增删改查</a>
+          <ul>
+            <li><a href="#1-获取表">1. 获取表</a></li>
+            <li><a href="#2-添加数据">2. 添加数据</a></li>
+            <li><a href="#3-修改数据">3. 修改数据</a></li>
+            <li><a href="#4-查询数据">4. 查询数据</a></li>
+            <li><a href="#5-删除数据">5. 删除数据</a></li>
+            <li><a href="#6-执行任意的sql语句">6. 执行任意的sql语句</a></li>
+          </ul>
+        </li>
+        <li><a href="#四视图">四、视图</a>
+          <ul>
+            <li><a href="#1路径">1.路径</a></li>
+            <li><a href="#2-命名规则">2. 命名规则</a></li>
+            <li><a href="#3-展示视图方法">3. 展示视图方法</a></li>
+            <li><a href="#4-变量分配和展示">4. 变量分配和展示</a></li>
+            <li><a href="#5-模板中使用函数">5. 模板中使用函数</a></li>
+            <li><a href="#6-foreach循环遍历标签">6. foreach循环遍历标签</a></li>
+            <li><a href="#7if判断条件标签">7.if判断条件标签</a></li>
+            <li><a href="#8-模版的继承和包含">8. 模版的继承和包含</a></li>
+            <li><a href="#9-外部静态文件的引入">9. 外部静态文件的引入</a></li>
+          </ul>
+        </li>
+        <li><a href="#五控制器">五、控制器</a>
+          <ul>
+            <li><a href="#1-路径">1. 路径</a></li>
+            <li><a href="#2-命令行创建">2. 命令行创建</a></li>
+            <li><a href="#3-获取参数">3. 获取参数</a></li>
+          </ul>
+        </li>
+        <li><a href="#六模型">六、模型</a>
+          <ul>
+            <li><a href="#1-定义模型">1. 定义模型</a></li>
+            <li><a href="#2-模型控制器的调用">2. 模型控制器的调用</a></li>
+            <li><a href="#3-模型的增删改查">3. 模型的增删改查</a></li>
+          </ul>
+        </li>
+        <li><a href="#七csrf攻击">七、CSRF攻击</a>
+          <ul>
+            <li><a href="#1-什么是csrf攻击">1. 什么是CSRF攻击</a></li>
+            <li><a href="#2-laravel中csrf机制">2. laravel中CSRF机制</a></li>
+            <li><a href="#3-从csrf验证中排除例外路由">3. 从CSRF验证中排除例外路由</a></li>
+          </ul>
+        </li>
+        <li><a href="#八表单验证">八、表单验证</a>
+          <ul>
+            <li><a href="#1-基本语法">1. 基本语法：</a></li>
+            <li><a href="#2-基本验证规则">2. 基本验证规则：</a></li>
+            <li><a href="#3-输出错误信息">3. 输出错误信息</a></li>
+            <li><a href="#4-将输出结果转换为中文">4. 将输出结果转换为中文</a></li>
+          </ul>
+        </li>
+        <li><a href="#九文件上传">九、文件上传</a>
+          <ul>
+            <li><a href="#1-获取文件">1. 获取文件</a></li>
+            <li><a href="#2判断文件是否存在">2.判断文件是否存在</a></li>
+            <li><a href="#3-验证文件是否上传成功">3. 验证文件是否上传成功</a></li>
+            <li><a href="#4-获取错误信息">4. 获取错误信息</a></li>
+            <li><a href="#5-保存文件">5. 保存文件</a></li>
+            <li><a href="#6-实例">6. 实例</a></li>
+          </ul>
+        </li>
+        <li><a href="#十数据分页">十、数据分页</a></li>
+        <li><a href="#十一验证码">十一、验证码</a></li>
+        <li><a href="#十二数据表的迁移和填充">十二、数据表的迁移和填充</a>
+          <ul>
+            <li><a href="#1-数据的迁移">1. 数据的迁移</a></li>
+            <li><a href="#2-数据表填充器">2. 数据表填充器</a></li>
+          </ul>
+        </li>
+        <li><a href="#十三命令行">十三、命令行</a></li>
+        <li><a href="#十四ajax">十四、ajax</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="一目录结构">一、目录结构</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">projectName
+｜- app
+  ｜- http
+  ｜	- Controller：控制器所在目录
+  ｜	- User.php：默认模型文件
+｜- config：所有配置文件所在目录
+｜- bootstrap：启动目录
+｜- database
+  ｜- migrations：数据库迁移文件目录
+  ｜- seed：数据库模拟数据文件目录
+｜- public：公共文件目录
+｜- routes
+  ｜- web.php：路由配置文件
+｜- .env:配置文件
+</code></pre></td></tr></table>
+</div>
+</div><p>新建项目：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">composer</span> <span class="nx">create</span><span class="o">-</span><span class="nx">project</span> <span class="nx">laravel</span><span class="o">/</span><span class="nx">laravel</span><span class="o">=</span><span class="mf">5.8</span><span class="o">.*</span> <span class="o">--</span><span class="nx">prefer</span><span class="o">-</span><span class="nx">dist</span> <span class="o">./</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="二路由">二、路由</h2>
+<h3 id="1-路由分组">1. 路由分组</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">Route</span><span class="o">::</span><span class="na">group</span><span class="p">([</span><span class="s2">&#34;prefix&#34;</span><span class="o">=&gt;</span><span class="s1">&#39;user&#39;</span><span class="p">],</span><span class="k">function</span><span class="p">(){</span>
+	<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="s2">&#34;Admin\IndexController@login&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-命令行查看现有路由">2. 命令行查看现有路由</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">aritsan</span> <span class="nx">route</span><span class="o">:</span><span class="k">list</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/image-20200825203712972.png" alt="image-20200825203712972"></p>
+<h3 id="3-路由别名">3. 路由别名</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;login&#39;</span><span class="p">,</span><span class="s2">&#34;Admin\IndexController@login&#34;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">(</span><span class="s2">&#34;别名名称&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="三数据库增删改查">三、数据库增删改查</h2>
+<h3 id="1-获取表">1. 获取表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$db</span><span class="o">=</span><span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s2">&#34;tableName&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-添加数据">2. 添加数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 返回true|false,可以同时插入多条数据
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">insert</span><span class="p">([]);</span>
+
+<span class="c1">// 返回新建id，只能插入一条数据
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">insertGetId</span><span class="p">([]);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-修改数据">3. 修改数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 返回收到影响的行数
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([]);</span>
+
+<span class="c1">// $db-&gt;increment(&#34;字段名称&#34;)：每次➕1
+</span><span class="c1">// $db-&gt;increment(&#34;字段名称&#34;,5)：每次➕5
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-查询数据">4. 查询数据</h3>
+<h4 id="1-get">1. get()</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 查询全部数据,返回值是一个集合对象(Collection)
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>查询的每一行的记录是对象的形式，不是数组，所以需要使用$item-&gt;id,而不能使用$item[&lsquo;id&rsquo;]。</p>
+</blockquote>
+<h4 id="2value">2.value()</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 取出一个指定字段的值
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">(</span><span class="s2">&#34;字段名称&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3orderby">3.orderBy()</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;desc&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="4分页操作">4.分页操作</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">offset</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>limit:表示限制输出的条数</p>
+<p>offset：表示从什么地方开始</p>
+</blockquote>
+<h3 id="5-删除数据">5. 删除数据</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 删除数据
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+
+<span class="c1">// 清空数据
+</span><span class="c1"></span><span class="nv">$db</span><span class="o">-&gt;</span><span class="na">truncate</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-执行任意的sql语句">6. 执行任意的sql语句</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 影响记录的语句
+</span><span class="c1"></span><span class="nx">DB</span><span class="o">::</span><span class="na">statement</span><span class="p">(</span><span class="s2">&#34;sql语句&#34;</span><span class="p">);</span>
+
+<span class="c1">// 不影响记录的语句
+</span><span class="c1"></span><span class="nx">DB</span><span class="o">::</span><span class="na">select</span><span class="p">(</span><span class="s2">&#34;sql语句&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="四视图">四、视图</h2>
+<h3 id="1路径">1.路径</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">/</span><span class="nx">resources</span><span class="o">/</span><span class="nx">views</span><span class="o">/</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-命名规则">2. 命名规则</h3>
+<p><img src="images/image-20200825230855217.png" alt="image-20200825230855217" style="zoom:150%;" /></p>
+<h3 id="3-展示视图方法">3. 展示视图方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 视图可以分目录管理：“home/test/test1” or &#34;home.test.test1&#34;
+</span><span class="c1"></span><span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;视图文件的名称&#39;</span><span class="p">);</span>
+
+<span class="c1">// 重定向
+</span><span class="c1"></span><span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="nx">路由</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-变量分配和展示">4. 变量分配和展示</h3>
+<ul>
+<li><code>view(&quot;模板文件名称&quot;,数组)</code></li>
+<li><code>view(&quot;模板文件名称&quot;)-&gt;with(数组)</code></li>
+<li><code>view(&quot;模板文件名称&quot;)-&gt;with(名称,值)-&gt;with(名称,值)</code></li>
+<li>展示：<code>{{$value1}}</code></li>
+</ul>
+<blockquote>
+<p>compact:</p>
+<ul>
+<li>
+<p>语法：compact(var1,var2&hellip;)</p>
+</li>
+<li>
+<p>创建一个包含变量名和它们的值的数组。</p>
+</li>
+<li>
+<p>任何没有变量名与之对应的字符串都被略过。</p>
+<p><img src="images/image-20200825231140326.png" alt="image-20200825231140326" style="zoom:150%;" /></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="5-模板中使用函数">5. 模板中使用函数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="p">{{</span><span class="nx">函数名</span><span class="p">(</span><span class="nx">参数1，参数2</span><span class="p">,</span><span class="o">...</span><span class="p">)}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-foreach循环遍历标签">6. foreach循环遍历标签</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">@</span><span class="k">foreach</span><span class="p">(</span><span class="nv">$data</span> <span class="k">as</span> <span class="nv">$key</span><span class="o">=&gt;</span><span class="nv">$value</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">@</span><span class="k">endforeach</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7if判断条件标签">7.if判断条件标签</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">@</span><span class="k">if</span><span class="p">(</span><span class="nx">条件表达式1</span><span class="p">)</span>
+<span class="nx">执行的语句1</span>
+<span class="o">@</span><span class="k">elseif</span><span class="p">(</span><span class="nx">条件表达式2</span><span class="p">)</span>
+<span class="nx">执行的语句2</span>
+<span class="o">@</span><span class="k">elseif</span><span class="p">(</span><span class="nx">条件表达式3</span><span class="p">)</span>
+<span class="nx">执行的语句3</span>
+<span class="o">...</span>
+<span class="o">@</span><span class="k">else</span>
+<span class="nx">默认的执行语句</span>
+<span class="o">@</span><span class="k">endif</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="8-模版的继承和包含">8. 模版的继承和包含</h3>
+<ul>
+<li>公共模板使用<code>@yield(“区块名称”)</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>公共头部<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 可变区域 --&gt;</span>|
+@yield(&#34;名字&#34;)
+<span class="c">&lt;!-- 可变区域 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>公共尾部<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>子页面</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">@extends(需要继承的模板文件名)
+@section(&#34;模板中定义的yield的名字&#34;)
+代码
+@endsection
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>模版包含</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">@include(&#34;文件名&#34;)
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="9-外部静态文件的引入">9. 外部静态文件的引入</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- 通过路径来引入，注意href前面加上/ --&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/css/app.css&#34;</span><span class="p">&gt;</span>
+
+<span class="c">&lt;!-- 通过系统的asset方法引入,此方法会在前面加上域名--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{asset(&#39;css&#39;)}/app.css&#34;</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="五控制器">五、控制器</h2>
+<h3 id="1-路径">1. 路径</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">app\Http\Controller</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-命令行创建">2. 命令行创建</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">php artisan make:controller Admin/IndexController
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-获取参数">3. 获取参数</h3>
+<ul>
+<li>Input::has()：判断是否有参数</li>
+<li>Input::get(&ldquo;参数名称&rdquo;,“默认值”)</li>
+<li>Input::post(&ldquo;参数名称&rdquo;,“默认值”)</li>
+<li>Input::any(&ldquo;参数名称&rdquo;,“默认值”)</li>
+<li>Input::all()</li>
+</ul>
+<h2 id="六模型">六、模型</h2>
+<p>Laravel 自带的 Eloquent ORM 提供了一个美观、简单的与数据库打交道的 ActiveRecord 实现，每张数据表都对应一个与该表进行交互的“Model模型”，模型允许你在表中进行数据查询，以及插入、更新、删除等操作。</p>
+<blockquote>
+<p><strong>AR模式三个核心</strong>（映射）：</p>
+<p>每个数据表               与数据表进行交互的Model模型映射（实例化模型）</p>
+<p>记录中的字段           与模型类的属性映射（给属性赋值）</p>
+<p>表中的每个记录        与一个完整的请求实例映射（具体的CURD操作）</p>
+</blockquote>
+<h3 id="1-定义模型">1. 定义模型</h3>
+<p>定义模型的位置，默认是在app目录下面，但是为了管理方便，建议分目录进行创建。</p>
+<p>本身laravel对模型的命名没有严格的要求，一般采用 <code>表名(首字母大写).php</code></p>
+<p>创建模型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">php artisan make:model Home/Member
+</code></pre></td></tr></table>
+</div>
+</div><p>⚠️注意事项：</p>
+<blockquote>
+<p>第一：（必做）定义一个$table属性，值是不要前缀的表名，<strong>如果不指定则使用类名的复数形式作为表名</strong>。如果模型为Member模型在不指定table属性的情况下，其默认会去找members表。修饰词：protected</p>
+</blockquote>
+<blockquote>
+<p>第二：（可选）定义$primaryKey属性，值是主键名称，如果需要使AR模式的find方法，则可能需要指定主键（Model::find(n)），在主键字段不是id的时候则需要指定主键。修饰词：protected</p>
+</blockquote>
+<blockquote>
+<p>第三： （可选）定义$timestamps属性，值是false,如果不设置为false，则默认会操作表中的created_at和updated_at字段,我们表中一般没有这两个字段，所以设置为false,表示不要操作这两个字段。<strong>修饰词：public</strong></p>
+</blockquote>
+<blockquote>
+<p>第四：（可选）定义$fillable属性，表示使用模型插入数据时，允许插入到数据库的字段信息。修饰词：protected</p>
+</blockquote>
+<blockquote>
+<p><strong>使用模型中create插入数据时，要设置$fillable允许入库的字段</strong>，使用$guarded是设置排除入库的字段。</p>
+</blockquote>
+<h3 id="2-模型控制器的调用">2. 模型控制器的调用</h3>
+<ul>
+<li>
+<p>直接像使用DB门面一样的操作方式：以调用静态方法为主的形式，该形式下模型不需要实例化，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// Member::get() 等价于 DB::table(‘member’) -&gt; get()；
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">get</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>实例化模型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$model</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Member</span><span class="p">();</span>
+<span class="nv">$model</span> <span class="o">-&gt;</span> <span class="na">get</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="3-模型的增删改查">3. 模型的增删改查</h3>
+<p>首先，在控制器文件引入Request类：<code>use illuminate\http\Request;</code></p>
+<p>Request类的使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">()</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">only</span><span class="p">([</span><span class="nx">‘name1’</span><span class="p">,</span><span class="nx">’name2’…</span><span class="p">])</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">except</span><span class="p">([</span><span class="nx">‘name1’</span><span class="p">,</span><span class="nx">’name2’…</span><span class="p">])</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="nx">‘name’</span><span class="p">)</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nx">‘name’</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="1-添加数据">1. 添加数据</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">Member</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">())</span><span class="c1">//返回值是一个对象
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：如果使用<code>create</code>方法，则需要在模型中定义fillable属性，允许写入字段的定义，如果没有时间相关字段也需要禁用时间自动更新功能.</p>
+</blockquote>
+<h4 id="2-查询数据">2. 查询数据</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$info</span> <span class="o">=</span> <span class="nx">Member</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span> <span class="c1">// 静态方法调用，获取主键为4的数据
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s2">&#34;id&#34;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span> <span class="c1">// 获取符合指定条件的第一条数据
+</span><span class="c1"></span>
+<span class="c1">// 查询多行并指定字段
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">all</span><span class="p">();</span>
+<span class="nx">Member</span><span class="o">::</span><span class="na">all</span><span class="p">([</span><span class="nx">字段1</span><span class="p">,</span><span class="nx">字段2</span><span class="p">])</span>     <span class="c1">//与get方法的区别，all不支持连接其他的辅助查询方法
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">get</span><span class="p">()</span>    
+<span class="nx">Member</span><span class="o">::</span><span class="na">get</span><span class="p">([</span><span class="nx">字段1</span><span class="p">,</span><span class="nx">字段2</span><span class="p">])</span>
+
+  
+<span class="c1">// 按条件查询指定多个字段
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">([</span><span class="s1">&#39; 列 1&#39;</span><span class="p">,</span><span class="s1">&#39; 列 2&#39;</span><span class="p">]);</span>	<span class="c1">//数组选列
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;列1&#39;</span><span class="p">,</span><span class="s1">&#39;列2&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span> <span class="c1">//字符串选列
+</span><span class="c1"></span><span class="nx">Member</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span> <span class="p">[</span><span class="s1">&#39; 列 1&#39;</span><span class="p">,</span><span class="s1">&#39; 列 2&#39;</span><span class="p">]</span> <span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span> <span class="c1">//字符串选列
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其返回值默认是一个对象。</p>
+<blockquote>
+<p>如果需要在laravel中对象的结果集转化成数组，则需要在最终添加方法的调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"> <span class="o">-&gt;</span> <span class="na">get</span><span class="p">()</span><span class="o">-&gt;</span> <span class="na">toArray</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h4 id="3-修改数据-1">3. 修改数据</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">// 先获取数据，然后修改
+</span><span class="c1"></span><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span> 
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">title</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">];</span> 
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">content</span><span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">];</span>
+<span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">()</span> <span class="o">?</span> <span class="s1">&#39;OK&#39;</span> <span class="o">:</span> <span class="s1">&#39;fail&#39;</span><span class="p">;</span>
+
+<span class="c1">// 使用模型的update方法
+</span><span class="c1"></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">Member</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;7&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([</span>
+  <span class="s1">&#39;age&#39;</span><span class="o">=&gt;</span><span class="s1">&#39;82&#39;</span><span class="p">,</span>
+<span class="p">]);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="4-删除数据">4. 删除数据</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+<span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">()</span> <span class="o">?</span> <span class="s1">&#39;ok&#39;</span> <span class="o">:</span> <span class="s1">&#39;fail&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="七csrf攻击">七、CSRF攻击</h2>
+<h3 id="1-什么是csrf攻击">1. 什么是CSRF攻击</h3>
+<p>CSRF是跨站请求伪造（Cross-site request forgery）的英文缩写：</p>
+<p>Laravel框架中避免CSRF攻击很简单：Laravel自动为每个用户Session生成了一个CSRF Token，该Token可用于验证登录用户和发起请求者是否是同一人，如果不是则请求失败。【<strong>该原理和验证码的原理是一致</strong>】</p>
+<p>Laravel提供了一个全局帮助函数csrf_token来获取该Token值，因此只需在视图提交表单中添加如下HTML代码即可在请求中带上Token：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;hidden&#34;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;_token&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&#34;&lt;?php echo csrf_token(); ?&gt;&#34;</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2-laravel中csrf机制">2. laravel中CSRF机制</h3>
+<p>在laravel中是默认开启csrf验证机制的，如果不携带token值，会提示报错：</p>
+<p><img src="images/image-20200826125646361.png" alt="image-20200826125646361"></p>
+<p>如何携带：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="c1">//1.
+</span><span class="c1"></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;hidden&#34;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;_token&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&#34;&lt;?php echo csrf_token(); ?&gt;&#34;</span><span class="o">&gt;</span>
+  
+<span class="c1">//2.
+</span><span class="c1"></span><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;hidden&#34;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;_token&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&#34;{{csrf_token()}}&#34;</span><span class="o">&gt;</span>
+  
+<span class="c1">//3.
+</span><span class="c1"></span><span class="p">{{</span><span class="nx">csrf_field</span><span class="p">()}}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>csrf_token和csrf_field的区别：</p>
+<ul>
+<li>csrf_token：只是输出token的值</li>
+<li>csrf_field：输出了一整个的input隐藏域</li>
+</ul>
+</blockquote>
+<p>⚠️：在ajax请求中需要使用<code>csrf_token</code>。</p>
+<h3 id="3-从csrf验证中排除例外路由">3. 从CSRF验证中排除例外路由</h3>
+<p>并不是所有请求都需要避免CSRF攻击，比如去第三方API获取数据的请求。</p>
+<p>可以通过在VerifyCsrfToken（<code>app/Http/Middleware/VerifyCsrfToken.php</code>）中间件中将要排除的请求URL添加到<code>$except</code>属性数组中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php">    <span class="sd">/**
+</span><span class="sd">     * The URIs that should be excluded from CSRF verification.
+</span><span class="sd">     *
+</span><span class="sd">     * @var array
+</span><span class="sd">     */</span>
+    <span class="k">protected</span> <span class="nv">$except</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="c1">// 单个路由写法，不能写别名：
+</span><span class="c1"></span>      <span class="s1">&#39;/home/test/test1&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;/home/test/test2&#39;</span><span class="p">,</span>
+        <span class="c1">// 排除所有路由csrf验证：
+</span><span class="c1"></span>      <span class="s1">&#39;*&#39;</span>
+    <span class="p">];</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="八表单验证">八、表单验证</h2>
+<p>在Laravel中，验证器检测验证参数不通过时，会将提示信息和表单数据都保存在<code>session</code>中，并且验证不通过时候会<code>自动跳转到上一个页面</code>。</p>
+<h3 id="1-基本语法">1. 基本语法：</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">(</span><span class="nv">$request</span><span class="p">,[</span><span class="nx">验证规则</span><span class="p">]);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>validate方法接受一个HTTP请求输入数据和验证规则，如果验证规则通过，代码会继续往下执行；</p>
+<p>然而，如果验证失败，则会抛出一个异常，相应的错误响应也会自动发送给客户。在一个传统的HTTP请求中，将会生成一个重定向响应，如果是AJAX请求则会返回一个JSON响应。</p>
+<blockquote>
+<p>补充：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">Input</span><span class="o">::</span><span class="na">method</span><span class="p">();</span> <span class="c1">// 返回GET或者POST，用于判断请求类型
+</span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="2-基本验证规则">2. 基本验证规则：</h3>
+<ul>
+<li>required：不能为空</li>
+<li>max:255：最长255个字符</li>
+<li>min:1：最少1个字符</li>
+<li>email ： 验证邮箱是否合法</li>
+<li>confirmed：验证两个字段是否相同，如果验证的字段是password，则必须输入一个与之匹配的password_confirmation字段</li>
+<li>integer：验证字段必须是整型</li>
+<li>ip：验证字段必须是ip地址</li>
+<li>numeric：验证字段必须是数值</li>
+<li>max:value：验证字段必须小于等于最大值，和字符串、数值、文件字段的size规则一起使用。</li>
+<li>min:value：验证字段必须大于等于最小值，和字符串、数值、文件字段的size规则一起使用。</li>
+<li>size:value ：验证字段必须有和给定值value想匹配的尺寸，对字符串而言，value是相应的字符数目，对数值而言，value是给定整型值；对文件而言，value是相应的文件字节数。</li>
+<li>string： 验证字段必须是字符串</li>
+<li>unique：表名，字段，需要排除的ID</li>
+</ul>
+<blockquote>
+<p>注意：多个验证规则之间用<code>&quot;|&quot;</code>字符来进行分割。</p>
+</blockquote>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">if</span><span class="p">(</span><span class="nx">Input</span><span class="o">::</span><span class="na">method</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;POST&#34;</span><span class="p">){</span>
+  <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">validate</span><span class="p">(</span><span class="nv">$request</span><span class="p">,[</span>
+    <span class="s2">&#34;name&#34;</span>  <span class="o">=&gt;</span> <span class="s2">&#34;required|min:2|max:20&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;age&#34;</span>   <span class="o">=&gt;</span> <span class="s2">&#34;required|min:1|max:100|integer&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;email&#34;</span> <span class="o">=&gt;</span> <span class="s2">&#34;required|email&#34;</span>
+  <span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-输出错误信息">3. 输出错误信息</h3>
+<p>Laravel会自动将验证错误信息保存到session中，每一次请求视图的时候，Laravel都会自动从session数据中检查错误信息，如果有则将其绑定到视图。</p>
+<p>我们可以很方便的通过laravel给定的<code>$errors</code>变量，获取该对象的所有的错误信息。<code>$errors</code>变量是一个<code>Illuminate\Support\MessageBag</code>实例。</p>
+<p>在页面中展示错误信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="o">@</span><span class="k">if</span> <span class="p">(</span><span class="nx">count</span><span class="p">(</span><span class="nv">$errors</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="o">@</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$errors</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$error</span><span class="p">)</span>
+     <span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span><span class="p">{{</span><span class="nv">$error</span><span class="p">}}</span><span class="o">&lt;/</span><span class="nx">li</span><span class="o">&gt;</span>
+  <span class="o">@</span><span class="k">endforeach</span>
+<span class="o">@</span><span class="k">endif</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-将输出结果转换为中文">4. 将输出结果转换为中文</h3>
+<p>前往https://packagist.org 搜索<code>larval-lang</code>，</p>
+<p>使用composer安装；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">composer require caouecs/laravel-lang:~3.0
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>**语言包文件在vendor/caoue/laravel-lang中；将你需要的语言目录复制到resources/lang目录下即可。**同时，修改配置文件<code>config\app.php</code>中的<code>locale</code>配置项。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="s1">&#39;locale&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;zh-CN&#39;</span><span class="p">,</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h2 id="九文件上传">九、文件上传</h2>
+<blockquote>
+<p>在Laravel中，文件上传被看作是一个简单的http请求来看待。</p>
+</blockquote>
+<p>在页面中想要实现表单上传，需要以下要求：</p>
+<ul>
+<li>具有form标签，method必须为post，必须具备enctype属性</li>
+<li>至少具有一个input类型为file的标签；</li>
+<li>具有一个提交按钮；</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&#34;multipart/form-data&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;file&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;avatar&#34;</span><span class="p">/&gt;</span>
+  <span class="c">&lt;!-- 注意：在laravel中post表单提交需要添加csrf_token验证 --&gt;</span>
+  {{csrf_filed()}}
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;提交&#34;</span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>文件上传错误状态码error的取值范围为0-7，但是不包括5，其中0表示成功；</p>
+<p>在php中文件上传的本质则是文件的移动：<code>move_upload_file()</code></p>
+</blockquote>
+<h3 id="1-获取文件">1. 获取文件</h3>
+<p>在Laravel中，可以使用<code>Illuminate\Http\Request</code>实例提供的<code>file</code>方法或者动态属性来访问上传文件，<code>file</code>方法返回一个<code>Illuminate\Http\UploadedFile</code>类的实例，该类继承自PHP标准库中提供与文件交互方法的<code>SqlFIleInfo</code>类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">);</span>
+<span class="c1">// or
+</span><span class="c1"></span><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">avatar</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2判断文件是否存在">2.判断文件是否存在</h3>
+<p>也可以使用<code>hasFile</code>方法来判断文件在请求中是否存在：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasFile</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)){</span>
+  <span class="c1">//
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3-验证文件是否上传成功">3. 验证文件是否上传成功</h3>
+<p>使用<code>isValid</code>方法判断文件在上传过程中是否出错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">()){</span>
+  <span class="c1">//
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-获取错误信息">4. 获取错误信息</h3>
+<p>如果文件上传错误，可以使用<code>getErrorMessage()</code>方法获取错误信息:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getErrorMessage</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-保存文件">5. 保存文件</h3>
+<p>使用<code>move</code>方法保存文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="s1">&#39;保存路径&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>关于项目中使用路径的说明：</p>
+<p>如果路径是给php代码使用的，则路径建议使用<code>./</code>形式；如果路径是给浏览器使用的则建议使用<code>/</code>形式。</p>
+</blockquote>
+<h3 id="6-实例">6. 实例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">upload</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">Input</span><span class="o">::</span><span class="na">method</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasFile</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">()){</span>
+      <span class="c1">// 路径为public目录下的uploads目录，
+</span><span class="c1"></span>      <span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;./uploads&#39;</span><span class="p">,</span><span class="nx">md5</span><span class="p">(</span><span class="nx">time</span><span class="p">()</span><span class="o">.</span><span class="nx">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">9999</span><span class="p">))</span><span class="o">.</span><span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getClientOriginalExtension</span><span class="p">();</span>
+      <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">move</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+      <span class="c1">// 将数据写入数据库
+</span><span class="c1"></span>      <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+      <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;avatar&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;/uploads/&#39;</span><span class="o">.</span><span class="nv">$path</span><span class="p">;</span>
+      <span class="nv">$result</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasFile</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">){</span>
+      <span class="k">echo</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">getErrorMessage</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>如果使用的是create方法添加数据到数据表中，则这里还要修改一下模型里面的一个fillable属性，代表允许插入到数据库的字段。</p>
+</blockquote>
+<h2 id="十数据分页">十、数据分页</h2>
+<p>在laravel里面要完成分页是很简单的，它的思想之前的框架有些不一样，之前框架使用的是分页类完成分页，laravel是直接调用<strong>模型</strong>的分页方法，返回对应的数据和分页的字符串。</p>
+<p>分页类路径：<code>vender/laravel/framework/src/Illuminate/Pagination</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nv">$users</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="c1">// 简单分页：只有上一页和下一页
+</span><span class="c1"></span><span class="nv">$users</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;&gt;&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">simplePapginate</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>当调用<code>paginate</code>方法，获取<code>Illuminate\Pagination\LengthAwarepaginator</code>实例；</p>
+<p>当调用<code>simplePaginate</code>方法，获取<code>Illuminate\Pagination\Paginator</code>实例；</p>
+</blockquote>
+<p>在页面中可以调用<code>links</code>方法现实分页页码.</p>
+<p>分页模板文件路径：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">vender/laravel/framework/src/Illuminate/Pagination/resources/views/default.blade.php
+</code></pre></td></tr></table>
+</div>
+</div><p>可以在此文件中修改页面的提示“&raquo;”和“&laquo;”改成上一页和下一页提示文字。</p>
+<p>常用方法总结：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">分页数据对象-&gt;count()        			//当前页数据条数
+分页数据对象-&gt;currentPage()  		//当前页码
+分页数据对象-&gt;firstItem()    			//当前页第一条数据的序号
+分页数据对象-&gt;hasMorePages() 		//是否有后续页码
+分页数据对象-&gt;lastItem()     			//当前页最后一条数据的序号
+分页数据对象-&gt;lastPage() 				//最后页序号
+分页数据对象-&gt;nextPageUrl()  		//下一页的链接地址
+分页数据对象-&gt;perPage()      			//每页显示数据条数
+分页数据对象-&gt;previousPageUrl()  	//上一页的链接地址
+分页数据对象-&gt;total() 					//记录总条数
+分页数据对象-&gt;url(5)         			//制作指定页码的链接地址
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="十一验证码">十一、验证码</h2>
+<p>Laravel框架自身并不具有验证码包，所以需要安装第三方依赖：</p>
+<p><a href="https://packagist.org/packages/mews/captcha">https://packagist.org/packages/mews/captcha</a></p>
+<h2 id="十二数据表的迁移和填充">十二、数据表的迁移和填充</h2>
+<p>迁移：<strong>创建</strong>数据表的操作+<strong>删除</strong>数据表的操作</p>
+<p>填充：往数据表里填充写入测试的数据（数据的插入操作）</p>
+<h3 id="1-数据的迁移">1. 数据的迁移</h3>
+<p>在迁移过程中，操作可以分为两个部分：<strong>创建与编写迁移文件、执行迁移文件</strong>。</p>
+<h4 id="11-迁移文件编写">1.1 迁移文件编写</h4>
+<p>迁移文件路径：<code>database/migrations/</code>，存放在该目录下的文件都被称为迁移文件。</p>
+<p>创建迁移文件，迁移文件名命名规则：<code>create_paper_table</code>,中间为表名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">php artisan make:migration 迁移文件名
+</code></pre></td></tr></table>
+</div>
+</div><p>生成的初始代码包括<code>up</code>和<code>down</code>方法：</p>
+<ul>
+<li><code>up</code>方法表示创建数据表的方法</li>
+<li><code>down</code>方法表示删除数据表的方法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">(){</span>
+  <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span><span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">){</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+
+<span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">(){</span>
+  <span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="12-执行迁移文件">1.2 执行迁移文件</h4>
+<p>Up方法的执行：</p>
+<blockquote>
+<p>如果在当前的项目中第一次执行迁移文件的话，则需要先去执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">install</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>在执行过上述的命令之后，在数据表中会多出一个数据表，migrations，用于创建记录迁移文件的记录数据表；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">migrate</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Down方法执行：（回滚操作，删除数据表）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">rollback</span>	<span class="nx">【回滚最后一次的迁移操作，回滚操作不删除迁移文件】</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：<strong>删除（回滚）之后会删除上一个批次的迁移记录，并且同批次建立的数据表也会删除，但是迁移文件依旧存在，方便后期继续迁移（创建数据表）</strong>。</p>
+</blockquote>
+<h3 id="2-数据表填充器">2. 数据表填充器</h3>
+<h4 id="21-种子文件的编写">2.1 种子文件的编写</h4>
+<p>填充器默认目录：<code>database/seeds/</code>,该目录是填充器的默认目录。</p>
+<p>创建填充器:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">make</span><span class="o">:</span><span class="nx">seeder</span> <span class="nx">大写表名</span><span class="o">+</span><span class="nx">TableSeeder</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>填充器中有<code>run</code>方法用于往数据库中写入数据。</p>
+<blockquote>
+<p>在填充器文件中可以使用DB门面去新增数据，但是需要注意，DB门面在使用的时候不需要用户自己引入，一旦引入则报错，可以直接使用。建议使用DB门面方法写入新的数据</p>
+</blockquote>
+<h4 id="22-执行填充器文件">2.2 执行填充器文件</h4>
+<p>种子文件不像迁移文件，迁移操作有单独的对应关系表去记录，由于种子文件的执行没有任何的记录，所以在执行种子文件的时候需要指定需要执行的种子文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">db</span><span class="o">:</span><span class="nx">seed</span> <span class="o">--</span><span class="nx">class</span><span class="o">=</span><span class="nx">需要执行的种子文件名（不带</span><span class="o">.</span><span class="nx">php）</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>填充器的执行操作没有回滚一说，没有删除。如果需要回滚，则可以手动清空对应的数据表。</strong></p>
+<h2 id="十三命令行">十三、命令行</h2>
+<p>常用命令行操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-markdown" data-lang="markdown">php artisan make:controller
+php artisan make:model
+php artisan make:migration
+php artisan make:seeder
+
+php artisan migrate
+php artisan migrate:install
+php artisan migrate:rollback
+
+php artisan db:seed --class=className
+
+php artisan serve
+
+php artisan route:list
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="十四ajax">十四、ajax</h2>
+<p>在laravel中框架如果需要响应json数据，则写成语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-php" data-lang="php"><span class="k">return</span> <span class="nx">response</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="na">json</span><span class="p">(</span><span class="nx">需要json输出的数据</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>补充：在laravel中布尔值是不能被直接通过return 响应输出的。</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/php/">php</a>
+          <a href="/tags/larval/">larval</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/001-java%E8%8A%B1%E8%BE%B9%E7%9F%A5%E8%AF%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java花边知识</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/nginx/nginx%E8%87%AA%E5%8A%A8%E8%B7%B3%E8%BD%AC%E5%88%B0www%E5%9F%9F%E5%90%8D%E8%AE%BE%E7%BD%AE/">
+            <span class="next-text nav-default">Nginx自动跳转到www域名设置</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:bearkchan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://github.com/bearkchan" class="iconfont icon-github" title="github"></a>
+  <a href="https://bearkchan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Bearkchan-<a href='https://beian.miit.gov.cn'>苏ICP备2020053789号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

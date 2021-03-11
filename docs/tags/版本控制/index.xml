@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>版本控制 on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</link>
+    <description>Recent content in 版本控制 on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gitlab与gitflow结合使用流程</title>
+      <link>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/002-gitlab%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/002-gitlab%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>1. 安装git-flow 打开mac终端，默认已安装brew，使用以下命令： 1 brew install git-flow 2. gitlab上创建空项目 创建完项目后，添加项目成员，设置成</description>
+    </item>
+    
+    <item>
+      <title>git使用教程</title>
+      <link>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/001-git%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/001-git%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>1. 安装 安装完成之后，打开终端，配置一下个人信息： 1 2 3 4 5 6 7 8 # 如下信息会在提交代码的时候用到，记录在你的每一次提交中。这样才能知道哪次提</description>
+    </item>
+    
+  </channel>
+</rss>

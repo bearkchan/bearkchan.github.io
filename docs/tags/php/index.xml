@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/php/</link>
+    <description>Recent content in php on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laravel5.8教程</title>
+      <link>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/005-laravel5.8%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/005-laravel5.8%E6%95%99%E7%A8%8B/</guid>
+      <description>一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf</description>
+    </item>
+    
+    <item>
+      <title>phpcms的使用</title>
+      <link>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/phpcms%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/phpcms%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>模板文件PC标签的使用 静态文件的调用 WEB_PATH：网站根目录 JS_PATH：JS路径 CSS_PATH：CSS路径 IMG_PATH：图片路</description>
+    </item>
+    
+    <item>
+      <title>让phpcms支持https</title>
+      <link>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/%E8%AE%A9phpcms%E6%94%AF%E6%8C%81https/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/%E8%AE%A9phpcms%E6%94%AF%E6%8C%81https/</guid>
+      <description>本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。 假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。 **1、如果已经安装</description>
+    </item>
+    
+  </channel>
+</rss>

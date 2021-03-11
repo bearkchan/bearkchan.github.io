@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>date on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/date/</link>
+    <description>Recent content in date on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/date/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java时间日期常用类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/004-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/004-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. Java中时间日期API分类 JDK8.0之前 System.currentTimeMillis()：获取当前系统时间戳 Date类： java.</description>
+    </item>
+    
+  </channel>
+</rss>

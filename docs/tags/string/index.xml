@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>string on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/string/</link>
+    <description>Recent content in string on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 20 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中String相关类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. 概述 String类被声明为final的，不可被继承。 String类实现了Serializable接口：表示字符串是可以被序列化的。 Stri</description>
+    </item>
+    
+  </channel>
+</rss>

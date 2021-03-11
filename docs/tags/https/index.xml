@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>https on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/https/</link>
+    <description>Recent content in https on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/https/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>让phpcms支持https</title>
+      <link>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/%E8%AE%A9phpcms%E6%94%AF%E6%8C%81https/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/%E8%AE%A9phpcms%E6%94%AF%E6%8C%81https/</guid>
+      <description>本文整理自PHPCMS官方论坛的一篇文章，感谢作者的奉献。 假设已经配置好ssl证书，不知如何申请ssl证书者请自行百度。 **1、如果已经安装</description>
+    </item>
+    
+  </channel>
+</rss>

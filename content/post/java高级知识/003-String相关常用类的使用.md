@@ -1,8 +1,12 @@
 ---
-title: "Nihao"
-date: 2021-03-11T00:29:44+08:00
+title: "Java中String相关类的使用"
+date: 2020-03-20T00:29:44+08:00
 draft: false
+Categories: ["java"]
+Tags: ["java", "string"]
 ---
+
+
 
 ## 1. 概述
 
@@ -39,7 +43,7 @@ s1 = "hello";
 
 ### 2.3 图示
 
-![image-20210101222542952](../images/image-20210101222542952.png)
+![image-20210101222542952](http://cdn.bearkchan.top/image-20210101222542952.png)
 
 ## 3. String赋值的三种方式
 
@@ -73,7 +77,7 @@ System.out.println(s3 == s4);//false
 
 ### 3.3 图示
 
-![image-20210101224837818](../images/image-20210101224837818.png)
+![image-20210101224837818](http://cdn.bearkchan.top/image-20210101224837818.png)
 
 ## 4. 字符串常用方法列表
 

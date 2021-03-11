@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java中网络编程基础知识介绍 - BK - Coding the world</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bearkchan" /><meta name="description" content="InetAddress类的使用 实现网络通信需要解决的两个问题 如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。 找到主机后如何可靠高" /><meta name="keywords" content="bearkchan, java, php" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/010-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java中网络编程基础知识介绍" />
+<meta property="og:description" content="InetAddress类的使用 实现网络通信需要解决的两个问题 如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。 找到主机后如何可靠高" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/010-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-02T00:29:44&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-02T00:29:44&#43;08:00" />
+
+<meta itemprop="name" content="Java中网络编程基础知识介绍">
+<meta itemprop="description" content="InetAddress类的使用 实现网络通信需要解决的两个问题 如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。 找到主机后如何可靠高"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="366">
+<meta itemprop="keywords" content="java,socket," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中网络编程基础知识介绍"/>
+<meta name="twitter:description" content="InetAddress类的使用 实现网络通信需要解决的两个问题 如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。 找到主机后如何可靠高"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">BK&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">BK&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java中网络编程基础知识介绍</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-02 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> java </a>
+            </div>
+          <span class="more-meta"> 约 366 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#inetaddress类的使用">InetAddress类的使用</a>
+          <ul>
+            <li><a href="#实现网络通信需要解决的两个问题">实现网络通信需要解决的两个问题</a></li>
+            <li><a href="#网络通信的两个要素">网络通信的两个要素</a></li>
+            <li><a href="#通信要素一ip和端口号">通信要素一：IP和端口号</a></li>
+            <li><a href="#通信要素二网络通信协议">通信要素二：网络通信协议</a></li>
+          </ul>
+        </li>
+        <li><a href="#tcp网络编程">TCP网络编程</a></li>
+        <li><a href="#udp网络编程">UDP网络编程</a></li>
+        <li><a href="#url编程">URL编程</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="inetaddress类的使用">InetAddress类的使用</h2>
+<h3 id="实现网络通信需要解决的两个问题">实现网络通信需要解决的两个问题</h3>
+<ol>
+<li>如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。</li>
+<li>找到主机后如何可靠高效的进行数据传输。</li>
+</ol>
+<h3 id="网络通信的两个要素">网络通信的两个要素</h3>
+<ol>
+<li>对应问题一：IP和端口号</li>
+<li>对应问题二：提供网络通信协议：TCP/IP参考模型（应用层、传输层、网络层、物理+数据链路层）</li>
+</ol>
+<h3 id="通信要素一ip和端口号">通信要素一：IP和端口号</h3>
+<p>在Java中使用<code>InetAddress</code>	类代表IP。此类的一个对象就代表一个具体的IP地址。</p>
+<p>实例化过程：</p>
+<ul>
+<li>getByName(String host)</li>
+<li>getLocalHost()</li>
+</ul>
+<p>常用方法有：</p>
+<ul>
+<li>getHostName()</li>
+<li>getHostAddress()</li>
+</ul>
+<p>端口号表示正在计算机上运行的进程。不同的程序有不同的端口号。自定义端口号的范围在：0～65535之间。</p>
+<blockquote>
+<p>端口号和IP地址的组合得到一个网络套接字：Socket</p>
+</blockquote>
+<h3 id="通信要素二网络通信协议">通信要素二：网络通信协议</h3>
+<p>网络通信模型分类：</p>
+<p><img src="http://cdn.bearkchan.top/image-20210225164034381.png" alt="image-20210225164034381"></p>
+<p><img src="http://cdn.bearkchan.top/image-20210225164143027.png" alt="image-20210225164143027"></p>
+<p>TCP和UDP的区别：</p>
+<p><img src="http://cdn.bearkchan.top/image-20210225164200869.png" alt="image-20210225164200869"></p>
+<p>TCP的三次握手和四次挥手过程：</p>
+<p><img src="http://cdn.bearkchan.top/image-20210225164312443.png" alt="image-20210225164312443"><img src="http://cdn.bearkchan.top/image-20210225164324167.png" alt="image-20210225164324167"></p>
+<h2 id="tcp网络编程">TCP网络编程</h2>
+<h2 id="udp网络编程">UDP网络编程</h2>
+<h2 id="url编程">URL编程</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          <a href="/tags/socket/">socket</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/007-%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java中注解的使用</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/javaweb%E9%98%B6%E6%AE%B5/001-jdbc/">
+            <span class="next-text nav-default">Java之JDBC使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:bearkchan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://github.com/bearkchan" class="iconfont icon-github" title="github"></a>
+  <a href="https://bearkchan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Bearkchan-<a href='https://beian.miit.gov.cn'>苏ICP备2020053789号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

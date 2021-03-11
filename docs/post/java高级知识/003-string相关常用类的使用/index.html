@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java中String相关类的使用 - BK - Coding the world</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bearkchan" /><meta name="description" content="1. 概述 String类被声明为final的，不可被继承。 String类实现了Serializable接口：表示字符串是可以被序列化的。 Stri" /><meta name="keywords" content="bearkchan, java, php" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java中String相关类的使用" />
+<meta property="og:description" content="1. 概述 String类被声明为final的，不可被继承。 String类实现了Serializable接口：表示字符串是可以被序列化的。 Stri" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-20T00:29:44&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-20T00:29:44&#43;08:00" />
+
+<meta itemprop="name" content="Java中String相关类的使用">
+<meta itemprop="description" content="1. 概述 String类被声明为final的，不可被继承。 String类实现了Serializable接口：表示字符串是可以被序列化的。 Stri"><meta itemprop="datePublished" content="2020-03-20T00:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-20T00:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="3906">
+<meta itemprop="keywords" content="java,string," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java中String相关类的使用"/>
+<meta name="twitter:description" content="1. 概述 String类被声明为final的，不可被继承。 String类实现了Serializable接口：表示字符串是可以被序列化的。 Stri"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">BK&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">BK&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java中String相关类的使用</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-20 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> java </a>
+            </div>
+          <span class="more-meta"> 约 3906 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-概述">1. 概述</a></li>
+        <li><a href="#2-string的不可变性">2. String的不可变性</a>
+          <ul>
+            <li><a href="#21-概述">2.1 概述</a></li>
+            <li><a href="#22-代码展示">2.2 代码展示</a></li>
+            <li><a href="#23-图示">2.3 图示</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-string赋值的三种方式">3. String赋值的三种方式</a>
+          <ul>
+            <li><a href="#31-概述">3.1 概述</a></li>
+            <li><a href="#32-代码展示">3.2 代码展示</a></li>
+            <li><a href="#33-图示">3.3 图示</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-字符串常用方法列表">4. 字符串常用方法列表</a></li>
+        <li><a href="#5-字符串与其他类型的转换">5. 字符串与其他类型的转换</a>
+          <ul>
+            <li><a href="#51-string与基本数据类型转换">5.1 String与基本数据类型转换</a></li>
+            <li><a href="#52-string与char数组的转换">5.2 String与char数组的转换</a></li>
+            <li><a href="#53-string与byte数组的转换">5.3 String与byte数组的转换</a></li>
+          </ul>
+        </li>
+        <li><a href="#6-stringstringbufferstringbulder三者对比">6. String、StringBuffer、StringBulder三者对比</a></li>
+        <li><a href="#7-stringbuffer的底层分析">7. StringBuffer的底层分析</a></li>
+        <li><a href="#8-stringbufferstringbuilder常用方法">8. StringBuffer、StringBuilder常用方法</a></li>
+        <li><a href="#9-stringstringbufferstringbuilder三者效率对比">9. String、StringBuffer、StringBuilder三者效率对比</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="1-概述">1. 概述</h2>
+<ul>
+<li>
+<p>String类被声明为<code>final</code>的，不可被继承。</p>
+</li>
+<li>
+<p>String类实现了<code>Serializable</code>接口：表示字符串是可以被序列化的。</p>
+</li>
+<li>
+<p>String实现了<code>Comparable</code>接口：表示字符串可以比较大小</p>
+</li>
+<li>
+<p>String内部定义了<code>final char[] value</code>变量来存储字符串数据。</p>
+</li>
+<li>
+<p>通过字面量的方式(<code>String s1=&quot;hello&quot;;</code>)给一个字符串赋值，此时的字符串声明在字符串常量池中。而通过new的方法给一个字符串赋值，此时的字符串声明在堆空间中。</p>
+</li>
+<li>
+<p>字符串常量池中是不会存储相同内容（使用String类的equals()方法返回true则为相同内容）的字符串的。</p>
+</li>
+</ul>
+<h2 id="2-string的不可变性">2. String的不可变性</h2>
+<h3 id="21-概述">2.1 概述</h3>
+<p>String具有不可变性，即代表不可变的字符序列：</p>
+<blockquote>
+<p>String代表了不可变的字符序列。</p>
+</blockquote>
+<ul>
+<li>当对字符串重新赋值时，需要重写指定内存区域赋值，不能使用原有的value进行赋值。</li>
+<li>当对现有的字符串进行连接操作的时候，需要重写指定内存区域赋值，不能使用原有的value进行赋值。</li>
+<li>当调用String的replace()方法修改指定字符或者字符串的时候，需要重写指定内存区域赋值。</li>
+</ul>
+<h3 id="22-代码展示">2.2 代码展示</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">&#34;abc&#34;</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="s">&#34;abc&#34;</span><span class="o">;</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="o">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="23-图示">2.3 图示</h3>
+<p><img src="http://cdn.bearkchan.top/image-20210101222542952.png" alt="image-20210101222542952"></p>
+<h2 id="3-string赋值的三种方式">3. String赋值的三种方式</h2>
+<h3 id="31-概述">3.1 概述</h3>
+<p>String赋值有三种方式：</p>
+<ul>
+<li>String s1 = &ldquo;abc&rdquo;;</li>
+<li>String s2 = new String(&ldquo;abc&rdquo;);</li>
+<li>String s3 = s1 + s2;</li>
+</ul>
+<p>s1使用的是字面量的方式赋值，此时，&ldquo;abc&quot;字符串是保存在字符串常量池中；</p>
+<p>s2使用的是new一个String对象的方式赋值，此时首先在堆中创建一个String对象，同时将s2指向堆中创建的这个对象，同时在字符串常量池中查找是否有“abc”字符串，如果没有则先在字符串常量池中首先创建这个字符串，并且将堆中的String对象中的<code>char[] value</code>指向字符串常量池中“abc”字符串对应的地址；</p>
+<blockquote>
+<p>注意：s2的创建方式创建了几个对象？</p>
+<p>创建了两个对象，一个是堆中的String对象，一个是字符串常量池中的”abc“</p>
+</blockquote>
+<p>⭐️s3使用的链接符的方式赋值，需要注意：只要连接符两边有一个是变量，那么就如同s2的创建方式一样，如果两边都是字面量或者是常量，则使用s1的创建方式。</p>
+<h3 id="32-代码展示">3.2 代码展示</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">&#34;abc&#34;</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;abc&#34;</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">s4</span> <span class="o">=</span> <span class="s">&#34;abcabc&#34;</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s3</span> <span class="o">==</span> <span class="n">s4</span><span class="o">);</span><span class="c1">//false
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-图示">3.3 图示</h3>
+<p><img src="http://cdn.bearkchan.top/image-20210101224837818.png" alt="image-20210101224837818"></p>
+<h2 id="4-字符串常用方法列表">4. 字符串常用方法列表</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">length</span><span class="o">()</span><span class="err">：</span><span class="n">返回字符串的长度</span><span class="err">：</span> <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span>
+<span class="kt">char</span> <span class="nf">charAt</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span><span class="err">：</span> <span class="n">返回某索引处的字符return</span> <span class="n">value</span><span class="o">[</span><span class="n">index</span><span class="o">]</span>
+<span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span><span class="err">：</span><span class="n">判断是否是空字符串</span><span class="err">：</span><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span>
+<span class="n">String</span> <span class="nf">toLowerCase</span><span class="o">()</span><span class="err">：</span><span class="n">使用默认语言环境</span><span class="err">，</span><span class="n">将</span> <span class="n">String</span> <span class="n">中的所有字符转换为小写</span>
+<span class="n">String</span> <span class="nf">toUpperCase</span><span class="o">()</span><span class="err">：</span><span class="n">使用默认语言环境</span><span class="err">，</span><span class="n">将</span> <span class="n">String</span> <span class="n">中的所有字符转换为大写</span>
+<span class="n">String</span> <span class="nf">trim</span><span class="o">()</span><span class="err">：</span><span class="n">返回字符串的副本</span><span class="err">，</span><span class="n">忽略前导空白和尾部空白</span>
+<span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">obj</span><span class="o">)</span><span class="err">：</span><span class="n">比较字符串的内容是否相同</span>
+<span class="kt">boolean</span> <span class="nf">equalsIgnoreCase</span><span class="o">(</span><span class="n">String</span> <span class="n">anotherString</span><span class="o">)</span><span class="err">：</span><span class="n">与equals方法类似</span><span class="err">，</span><span class="n">忽略大</span>
+<span class="n">小写</span>
+<span class="n">String</span> <span class="nf">concat</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span><span class="err">：</span><span class="n">将指定字符串连接到此字符串的结尾</span><span class="err">。</span> <span class="n">等价于用</span><span class="err">“</span><span class="o">+</span><span class="err">”</span>
+<span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">String</span> <span class="n">anotherString</span><span class="o">)</span><span class="err">：</span><span class="n">比较两个字符串的大小</span>
+
+<span class="kt">boolean</span> <span class="nf">endsWith</span><span class="o">(</span><span class="n">String</span> <span class="n">suffix</span><span class="o">)</span><span class="err">：</span><span class="n">测试此字符串是否以指定的后缀结束</span>
+<span class="kt">boolean</span> <span class="nf">startsWith</span><span class="o">(</span><span class="n">String</span> <span class="n">prefix</span><span class="o">)</span><span class="err">：</span><span class="n">测试此字符串是否以指定的前缀开始</span>
+<span class="kt">boolean</span> <span class="nf">startsWith</span><span class="o">(</span><span class="n">String</span> <span class="n">prefix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">toffset</span><span class="o">)</span><span class="err">：</span><span class="n">测试此字符串从指定索引开始的</span>
+<span class="n">子字符串是否以指定前缀开始</span>
+
+  
+  
+  
+<span class="n">String</span>	<span class="nf">substring</span><span class="o">(</span><span class="kt">int</span>	<span class="n">beginIndex</span><span class="o">)</span><span class="err">：</span> <span class="n">返回一个新的字符串</span><span class="err">，</span> <span class="n">它是此字符串的从</span>
+<span class="n">beginIndex开始截取到最后的一个子字符串</span><span class="err">。</span>
+<span class="n">String</span> <span class="nf">substring</span><span class="o">(</span><span class="kt">int</span> <span class="n">beginIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">endIndex</span><span class="o">)</span> <span class="err">：</span><span class="n">返回一个新字符串</span><span class="err">，</span><span class="n">它是此字</span> <span class="nf">符串从beginIndex开始截取到endIndex</span><span class="o">(</span><span class="n">不包含</span><span class="o">)</span><span class="n">的一个子字符串</span><span class="err">。</span>
+  
+  
+  
+  
+<span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">s</span><span class="o">)</span><span class="err">：</span><span class="n">当且仅当此字符串包含指定的</span> <span class="kt">char</span> <span class="n">值序列</span> <span class="n">时</span><span class="err">，</span><span class="n">返回</span> <span class="kc">true</span>
+<span class="kt">int</span> <span class="nf">indexOf</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span><span class="err">：</span><span class="n">返回指定子字符串在此字符串中第一次出现处的索引</span>
+<span class="kt">int</span> <span class="nf">indexOf</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">,</span> <span class="kt">int</span> <span class="n">fromIndex</span><span class="o">)</span><span class="err">：</span><span class="n">返回指定子字符串在此字符串中第一次出</span> <span class="n">现处的索引</span><span class="err">，</span><span class="n">从指定的索引开始</span>
+<span class="kt">int</span> <span class="nf">lastIndexOf</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span><span class="err">：</span><span class="n">返回指定子字符串在此字符串中最右边出现处的索引</span>
+<span class="kt">int</span> <span class="nf">lastIndexOf</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">,</span> <span class="kt">int</span> <span class="n">fromIndex</span><span class="o">)</span><span class="err">：</span><span class="n">返回指定子字符串在此字符串中最后</span> <span class="n">一次出现处的索引</span><span class="err">，</span><span class="n">从指定的索引开始反向搜索</span>
+<span class="n">注</span><span class="err">：</span><span class="n">indexOf和lastIndexOf方法如果未找到都是返回</span><span class="o">-</span><span class="n">1</span>
+  
+  
+  
+<span class="n">String</span> <span class="nf">replace</span><span class="o">(</span><span class="kt">char</span> <span class="n">oldChar</span><span class="o">,</span> <span class="kt">char</span> <span class="n">newChar</span><span class="o">)</span><span class="err">：</span><span class="n">返回一个新的字符串</span><span class="err">，</span><span class="n">它是</span>
+<span class="n">通过用</span> <span class="n">newChar</span> <span class="n">替换此字符串中出现的所有</span> <span class="n">oldChar</span> <span class="n">得到的</span><span class="err">。</span>
+<span class="n">String</span> <span class="nf">replace</span><span class="o">(</span><span class="n">CharSequence</span> <span class="n">target</span><span class="o">,</span> <span class="n">CharSequence</span> <span class="n">replacement</span><span class="o">)</span><span class="err">：</span> <span class="n">使</span> <span class="n">用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串</span><span class="err">。</span>
+<span class="n">String</span>	<span class="nf">replaceAll</span><span class="o">(</span><span class="n">String</span>	<span class="n">regex</span><span class="o">,</span>	<span class="n">String</span>	<span class="n">replacement</span><span class="o">)</span> <span class="err">：</span> <span class="n">使</span> <span class="n">用</span> <span class="n">给</span> <span class="n">定</span> <span class="n">的</span>
+<span class="n">replacement</span> <span class="n">替换此字符串所有匹配给定的正则表达式的子字符串</span><span class="err">。</span>
+<span class="n">String</span>	<span class="nf">replaceFirst</span><span class="o">(</span><span class="n">String</span>	<span class="n">regex</span><span class="o">,</span>	<span class="n">String</span>	<span class="n">replacement</span><span class="o">)</span> <span class="err">：</span> <span class="n">使用给定的</span>
+<span class="n">replacement</span> <span class="n">替换此字符串匹配给定的正则表达式的第一个子字符串</span><span class="err">。</span>
+
+  
+  
+<span class="kt">boolean</span> <span class="nf">matches</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">)</span><span class="err">：</span><span class="n">告知此字符串是否匹配给定的正则表达式</span><span class="err">。</span>
+
+  
+  
+<span class="n">String</span><span class="o">[]</span> <span class="nf">split</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">)</span><span class="err">：</span><span class="n">根据给定正则表达式的匹配拆分此字符串</span><span class="err">。</span>
+<span class="n">String</span><span class="o">[]</span> <span class="nf">split</span><span class="o">(</span><span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">limit</span><span class="o">)</span><span class="err">：</span><span class="n">根据匹配给定的正则表达式来拆分此</span> <span class="n">字符串</span><span class="err">，</span><span class="n">最多不超过limit个</span><span class="err">，</span><span class="n">如果超过了</span><span class="err">，</span><span class="n">剩下的全部都放到最后一个元素中</span><span class="err">。</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-字符串与其他类型的转换">5. 字符串与其他类型的转换</h2>
+<h3 id="51-string与基本数据类型转换">5.1 String与基本数据类型转换</h3>
+<ul>
+<li>
+<p>字符串&mdash;&gt; 基本数据类型、包装类</p>
+<ul>
+<li>
+<p>Integer包装类的public static int <strong>parseInt(String</strong> <strong>s)</strong>：可以将由“数字”字 符组成的字符串转换为整型。</p>
+</li>
+<li>
+<p>类似地,使用java.lang包中的Byte、Short、Long、Float、Double类调相应</p>
+<p>的类方法可以将由“数字”字符组成的字符串，转化为相应的基本数据类型。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>基本数据类型、包装类&mdash;&ndash;&gt; 字符串</p>
+<ul>
+<li>
+<p>调用String类的public String <strong>valueOf(int</strong> **n)**可将int型转换为字符串</p>
+</li>
+<li>
+<p>相应的valueOf(byte b)、valueOf(long l)、valueOf(float f)、valueOf(double</p>
+<p>d)、valueOf(boolean b)可由参数的相应类型到字符串的转换</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-string与char数组的转换">5.2 String与char数组的转换</h3>
+<ul>
+<li>字符串&mdash;-&gt; 字符数组
+<ul>
+<li><strong>public</strong> <strong>char[]</strong> <strong>toCharArray()</strong>：将字符串中的全部字符存放在一个字符数组中的方法。</li>
+<li><strong>public void getChars(int srcBegin, int srcEnd, char[] dst,int dstBegin)</strong>：提供了将指定索引范围内的字符串存放到数组中的方法。</li>
+</ul>
+</li>
+<li>字符数组&mdash;&ndash;&gt; 字符串
+<ul>
+<li>String 类的构造器：**String(char[]) 和 String(char[]，intoffset，int length)**分别用字符数组中的全部字符和部分字符创建字符串对象</li>
+</ul>
+</li>
+</ul>
+<h3 id="53-string与byte数组的转换">5.3 String与byte数组的转换</h3>
+<ul>
+<li>
+<p>字符串&mdash;-&gt; 字节数组</p>
+<ul>
+<li>
+<p><strong>public</strong> <strong>byte[] getBytes()</strong> **：**使用平台的默认字符集将此 String 编码为</p>
+<p>byte 序列，并将结果存储到一个新的 byte 数组中。</p>
+<p><strong>public</strong> <strong>byte[]</strong> <strong>getBytes(String</strong> <strong>charsetName)</strong> **：**使用指定的字符集将 此 String 编码到 byte 序列，并将结果存储到新的 byte 数组。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>字节数组&mdash;-&gt; 字符串</p>
+<ul>
+<li>**String(byte[])：**通过使用平台的默认字符集解码指定的 byte 数组，构 造一个新的 String。</li>
+<li><strong>String(byte[]，int</strong> offset**，int** length) ：用指定的字节数组的一部分， 即从数组起始位置offset开始取length个字节构造一个字符串对象。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;中&#34;</span><span class="o">;</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;ISO8859-1&#34;</span><span class="o">).</span><span class="na">length</span><span class="o">);</span><span class="c1">// -128~127
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;GBK&#34;</span><span class="o">).</span><span class="na">length</span><span class="o">);</span>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">).</span><span class="na">length</span><span class="o">);</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;ISO8859-1&#34;</span><span class="o">),</span>
+<span class="s">&#34;ISO8859-1&#34;</span><span class="o">));</span><span class="c1">// 乱码，表示不了中文
+</span><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;GBK&#34;</span><span class="o">),</span> <span class="s">&#34;GBK&#34;</span><span class="o">));</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&#34;UTF-8&#34;</span><span class="o">),</span> <span class="s">&#34;UTF-8&#34;</span><span class="o">));</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="6-stringstringbufferstringbulder三者对比">6. String、StringBuffer、StringBulder三者对比</h2>
+<ul>
+<li>String：不可变的字符序列，底层用char[]存储</li>
+<li>StringBuffer：可变的字符序列，线程安全的，效率比StringBuilder低，比String高，底层用char[]存储</li>
+<li>StringBuilder：可变的字符序列，JDK1.5之后出现，线程不安全的，效率最高，底层用char[]存储</li>
+</ul>
+<blockquote>
+<p>StringBuilder与StringBuffer方法一样，唯一的区别就是StringBuilder是线程不安全的。</p>
+</blockquote>
+<h2 id="7-stringbuffer的底层分析">7. StringBuffer的底层分析</h2>
+<p>StringBuffer底层同样使用char[]存储数据，但是它与String不同的是，String的char[] value是声明的final，而StringBuffer则不是。如果调用StringBuffer的空参构造器：<code>new StringBuffer()</code>，则char[]的默认为16，如果调用的是<code>new StringBuffer(String str)</code>构造器，则char[]的数组长度为：<code>str.length()+16</code>。</p>
+<blockquote>
+<p>注意：StringBuffer的lenght()方法获取的是实际存放的字符个数，而不是整个数组的长度。</p>
+</blockquote>
+<p>StringBuffer的扩容问题：</p>
+<p>如果要添加的数据底层数组放不下了，则需要扩容底层数组，默认情况下，扩容为原来容量的<code>2倍+2</code>,同时将原数组中的元素复制到新的数组中。</p>
+<h2 id="8-stringbufferstringbuilder常用方法">8. StringBuffer、StringBuilder常用方法</h2>
+<ul>
+<li>增：append(xxx)</li>
+<li>删：delete(int start, int end)</li>
+<li>改：setCharAt(int n, char ch) / replace(int start, int end, String str)</li>
+<li>查：charAt(int n)</li>
+<li>插：insert(int offset, xxx)</li>
+<li>长度：length()</li>
+</ul>
+<h2 id="9-stringstringbufferstringbuilder三者效率对比">9. String、StringBuffer、StringBuilder三者效率对比</h2>
+<p>String&lt;StringBuffer&lt;StringBuilder</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="n">0L</span><span class="o">;</span>
+<span class="kt">long</span> <span class="n">endTime</span> <span class="o">=</span> <span class="n">0L</span><span class="o">;</span>
+<span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+<span class="n">StringBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+<span class="n">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+<span class="c1">//开始对比
+</span><span class="c1"></span><span class="n">startTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">20000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="c1">//buffer.append(String.valueOf(i));
+</span><span class="c1"></span>    <span class="n">buffer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">endTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;StringBuffer的执行时间：&#34;</span> <span class="o">+</span> <span class="o">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">));</span>
+
+<span class="n">startTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">20000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="c1">//builder.append(String.valueOf(i));
+</span><span class="c1"></span>    <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">endTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;StringBuilder的执行时间：&#34;</span> <span class="o">+</span> <span class="o">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">));</span>
+
+<span class="n">startTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">20000</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="n">i</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="n">endTime</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;String的执行时间：&#34;</span> <span class="o">+</span> <span class="o">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="n">startTime</span><span class="o">));</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          <a href="/tags/string/">string</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/002-%E9%9B%86%E5%90%88%E7%9A%84%E4%BD%BF%E7%94%A8/">
+            <span class="next-text nav-default">Java集合的使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:bearkchan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://github.com/bearkchan" class="iconfont icon-github" title="github"></a>
+  <a href="https://bearkchan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Bearkchan-<a href='https://beian.miit.gov.cn'>苏ICP备2020053789号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

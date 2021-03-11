@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java多线程 - BK - Coding the world</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bearkchan" /><meta name="description" content="1. java创建线程的三种方式 Thread(class)：继承Thread类 Thread类本质也是继承了Runnable接口 ⭐Runnable" /><meta name="keywords" content="bearkchan, java, php" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.81.0 with theme even" />
+
+
+<link rel="canonical" href="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/001-%E5%A4%9A%E7%BA%BF%E7%A8%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java多线程" />
+<meta property="og:description" content="1. java创建线程的三种方式 Thread(class)：继承Thread类 Thread类本质也是继承了Runnable接口 ⭐Runnable" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/001-%E5%A4%9A%E7%BA%BF%E7%A8%8B/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-02T00:29:44&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-02T00:29:44&#43;08:00" />
+
+<meta itemprop="name" content="Java多线程">
+<meta itemprop="description" content="1. java创建线程的三种方式 Thread(class)：继承Thread类 Thread类本质也是继承了Runnable接口 ⭐Runnable"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
+<meta itemprop="wordCount" content="3503">
+<meta itemprop="keywords" content="java,多线程," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java多线程"/>
+<meta name="twitter:description" content="1. java创建线程的三种方式 Thread(class)：继承Thread类 Thread类本质也是继承了Runnable接口 ⭐Runnable"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">BK&#39;s BLOG</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">BK&#39;s BLOG</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java多线程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-02 </span>
+        <div class="post-category">
+            <a href="/categories/java/"> java </a>
+            </div>
+          <span class="more-meta"> 约 3503 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-java创建线程的三种方式">1. java创建线程的三种方式</a>
+          <ul>
+            <li><a href="#11-继承thread类">1.1 继承Thread类</a></li>
+            <li><a href="#12-实现runnable">1.2 实现Runnable</a></li>
+            <li><a href="#13-案例龟兔赛跑-race">1.3 案例：龟兔赛跑-Race</a></li>
+            <li><a href="#14-实现callable接口了解即可">1.4 实现Callable接口（了解即可）</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-什么是lambda表达式">2. 什么是lambda表达式</a>
+          <ul>
+            <li><a href="#那么为什么要使用lambda表达式呢">那么为什么要使用lambda表达式呢?</a></li>
+            <li><a href="#什么时候使用lambda表达式呢">什么时候使用Lambda表达式呢？</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-静态代理">3. 静态代理</a>
+          <ul>
+            <li><a href="#静态代理的总结">静态代理的总结：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="1-java创建线程的三种方式">1. java创建线程的三种方式</h2>
+<ul>
+<li>
+<p>Thread(class)：继承Thread类</p>
+<blockquote>
+<p>Thread类本质也是继承了Runnable接口</p>
+</blockquote>
+</li>
+<li>
+<p>⭐<strong>Runnable(接口)：实现Runnable接口</strong></p>
+</li>
+<li>
+<p>Callable(接口)：实现Callable接口</p>
+</li>
+</ul>
+<p>普通方法调用和多线程的区别如下图所示：</p>
+<p><img src="http://cdn.bearkchan.top//image-20201026191145090.png" alt="image-20201026191145090"></p>
+<p>普通线程只有主线程一条执行路径，而多线程则有多条执行路径，主线程和自线程并行交替的执行。</p>
+<h3 id="11-继承thread类">1.1 继承Thread类</h3>
+<ul>
+<li>自定义线程类继承<code>Thread</code>类</li>
+<li>重写<code>run()</code>方法，编写线程执行体</li>
+<li>创建线程对象，调用<code>start()</code>方法启动线程</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo1</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-21 00:04
+</span><span class="cm"> **/</span>
+
+<span class="c1">// 创建线程的方式一：继承Thread类，重写run（）方法，调用线程start（）方法
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestThread1</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//super.run();
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">200</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程一的代码--&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// main主线程
+</span><span class="c1"></span>        <span class="c1">// 创建一个线程对象
+</span><span class="c1"></span>        <span class="n">TestThread1</span> <span class="n">thread1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestThread1</span><span class="o">();</span>
+        <span class="n">thread1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">200</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;主线程的代码-- &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>执行结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"> * 主线程的代码-- <span class="m">0</span>
+ * 线程一的代码--0
+ * 线程一的代码--1
+ * 线程一的代码--2
+ * 线程一的代码--3
+ * 线程一的代码--4
+ * 线程一的代码--5
+ * 主线程的代码-- <span class="m">1</span>
+ * 线程一的代码--6
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>由输出结果可知，线程开启并不一定是立即执行的，而是由cpu统一调度执行。</p>
+</blockquote>
+<h3 id="12-实现runnable">1.2 实现Runnable</h3>
+<ul>
+<li>定义MyRunnable类实现<code>Runnable</code>接口</li>
+<li>实现<code>run()</code>方法，编写线程执行体</li>
+<li>创建线程对象，调用<code>start()</code>方法启动线程</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo1</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-24 14:19
+</span><span class="cm"> **/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestThread3</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">200</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程一的代码--&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">TestThread3</span> <span class="n">thread3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestThread3</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">thread3</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">200</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;主线程的代码-- &#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>那么实现Runnable方法和继承Thread类有什么区别和优势呢？</p>
+<p><img src="http://image.weibear.top//image-20201026192142623.png" alt="image-20201026192142623"></p>
+<blockquote>
+<p>当使用Runnable接口的时候，可以避免java单继承的局限性，方便多个线程同时操作同一份资源。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo1</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-24 14:31
+</span><span class="cm"> **/</span>
+
+
+<span class="c1">// 多个线程同时操作同一个对象
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestThread4</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+    <span class="c1">// 票数
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">ticketNums</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+
+
+    <span class="c1">// 发现问题：多个线程同时操作同一个资源的时候，线程不安全，数据混乱
+</span><span class="c1"></span>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">ticketNums</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 模拟线程延迟
+</span><span class="c1"></span>            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">200</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;--拿到了第&#34;</span> <span class="o">+</span> <span class="n">ticketNums</span><span class="o">--</span> <span class="o">+</span> <span class="s">&#34;张票&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">TestThread4</span> <span class="n">testThread4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestThread4</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">testThread4</span><span class="o">,</span> <span class="s">&#34;小明&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">testThread4</span><span class="o">,</span> <span class="s">&#34;老师&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">testThread4</span><span class="o">,</span> <span class="s">&#34;黄牛党&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">testThread4</span><span class="o">,</span> <span class="s">&#34;王二麻子&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="13-案例龟兔赛跑-race">1.3 案例：龟兔赛跑-Race</h3>
+<ol>
+<li>首先来个赛道距离，然后要离终点越来越近</li>
+<li>判断比赛是否结束</li>
+<li>打印出胜利者</li>
+<li>龟兔赛跑开始</li>
+<li>故事中是乌龟赢的，兔子需要睡觉，所以我们来模拟兔子睡觉</li>
+<li>终于，乌龟赢的了比赛。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo1</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-25 12:10
+</span><span class="cm"> **/</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Race</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+    <span class="c1">// 胜利者
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">winner</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 兔子每次走2步
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;兔子&#34;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">20</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// 判断比赛是否结束
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">gameOver</span><span class="o">(</span><span class="n">i</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// 模拟兔子睡觉
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">5</span> <span class="o">==</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;兔子&#34;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;--&gt;跑了&#34;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#34;步&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">gameOver</span><span class="o">(</span><span class="kt">int</span> <span class="n">steps</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 判断是否有获胜者
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">winner</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">steps</span> <span class="o">&gt;=</span> <span class="n">100</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">winner</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Race.gameOver,Winner is &#34;</span> <span class="o">+</span> <span class="n">winner</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Race</span> <span class="n">race</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Race</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">race</span><span class="o">,</span> <span class="s">&#34;兔子&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">race</span><span class="o">,</span> <span class="s">&#34;乌龟&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="14-实现callable接口了解即可">1.4 实现Callable接口（了解即可）</h3>
+<ul>
+<li>实现Callable接口，需要返回值类型</li>
+<li>重写call方法，需要抛出异常</li>
+<li>创建目标对象</li>
+<li>创建执行服务：<code>ExecutorService ser = Executors.newFixedThreadPool(3);</code></li>
+<li>提交执行：<code>Future&lt;Boolean&gt; result1 = ser.submit(t1);</code></li>
+<li>获取结果：<code>boolean r1 = result1.get();</code></li>
+<li>关闭服务：<code>ser.shutdownNow();</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo2</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.bk.demo1.TestThread2</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.io.FileUtils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.*</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-26 11:58
+</span><span class="cm"> **/</span>
+
+<span class="c1">// 线程创建方式3：实现callable接口
+</span><span class="c1">// callable的好处是：
+</span><span class="c1">//    1. 可以定义返回类型
+</span><span class="c1">//    2. 可以抛出异常
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestCallback</span> <span class="kd">implements</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Boolean</span> <span class="nf">call</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">WebDownloader</span> <span class="n">webDownloader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebDownloader</span><span class="o">();</span>
+        <span class="n">webDownloader</span><span class="o">.</span><span class="na">downloader</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">name</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">url</span><span class="o">;</span>
+
+
+    <span class="kd">public</span> <span class="nf">TestCallback</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">url</span> <span class="o">=</span> <span class="n">url</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#34;线程开始了&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ExecutionException</span><span class="o">,</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="n">TestCallback</span> <span class="n">thread1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestCallback</span><span class="o">(</span><span class="s">&#34;https://up.enterdesk.com/edpic/1a/b6/3b/1ab63b659599a656088b95f145db72f4.jpg&#34;</span><span class="o">,</span> <span class="s">&#34;1.jpg&#34;</span><span class="o">);</span>
+        <span class="n">TestCallback</span> <span class="n">thread2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestCallback</span><span class="o">(</span><span class="s">&#34;https://up.enterdesk.com/edpic_360_360/68/7e/b8/687eb83249011f4c27fef8f38301ef65.jpg&#34;</span><span class="o">,</span> <span class="s">&#34;2.jpg&#34;</span><span class="o">);</span>
+        <span class="n">TestCallback</span> <span class="n">thread3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TestCallback</span><span class="o">(</span><span class="s">&#34;https://up.enterdesk.com/edpic_360_360/71/f9/2b/71f92bab60eb4aa6d45f8db76ccc589d.jpg&#34;</span><span class="o">,</span> <span class="s">&#34;3.jpg&#34;</span><span class="o">);</span>
+
+        <span class="c1">// 创建执行服务
+</span><span class="c1"></span>        <span class="n">ExecutorService</span> <span class="n">executorService</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+        <span class="c1">// 提交执行
+</span><span class="c1"></span>        <span class="n">Future</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">submit1</span> <span class="o">=</span> <span class="n">executorService</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">thread1</span><span class="o">);</span>
+        <span class="n">Future</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">submit2</span> <span class="o">=</span> <span class="n">executorService</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">thread2</span><span class="o">);</span>
+        <span class="n">Future</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">submit3</span> <span class="o">=</span> <span class="n">executorService</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="n">thread3</span><span class="o">);</span>
+        <span class="c1">// 获取结果
+</span><span class="c1"></span>        <span class="kt">boolean</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">submit1</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="kt">boolean</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">submit2</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="kt">boolean</span> <span class="n">r3</span> <span class="o">=</span> <span class="n">submit3</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;r1 = &#34;</span> <span class="o">+</span> <span class="n">r1</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;r2 = &#34;</span> <span class="o">+</span> <span class="n">r2</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;r3 = &#34;</span> <span class="o">+</span> <span class="n">r3</span><span class="o">);</span>
+        <span class="c1">// 关闭服务
+</span><span class="c1"></span>        <span class="n">executorService</span><span class="o">.</span><span class="na">shutdownNow</span><span class="o">();</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// 下载器
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">WebDownloader</span> <span class="o">{</span>
+    <span class="c1">// 下载方法
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">downloader</span><span class="o">(</span><span class="n">String</span> <span class="n">url</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">FileUtils</span><span class="o">.</span><span class="na">copyURLToFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">url</span><span class="o">),</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">name</span><span class="o">));</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;IO异常，WebDownloader.downloader&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Callable的好处有：</p>
+<ol>
+<li>可以定义返回类型</li>
+<li>可以抛出异常</li>
+</ol>
+</blockquote>
+<h2 id="2-什么是lambda表达式">2. 什么是lambda表达式</h2>
+<p>lambda表达式属于函数式编程的一部分，在jdk8中被提出。</p>
+<p>其语法规则为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="o">(</span><span class="n">params</span><span class="o">)-&gt;{</span><span class="n">statements</span><span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="那么为什么要使用lambda表达式呢">那么为什么要使用lambda表达式呢?</h3>
+<ul>
+<li>避免匿名内部类定义过多</li>
+<li>可以使代码看起来更加简洁</li>
+<li>去掉了一堆没有意义的代码，只留下核心的逻辑。</li>
+</ul>
+<h3 id="什么时候使用lambda表达式呢">什么时候使用Lambda表达式呢？</h3>
+<p>当一个接口是<code>函数式接口</code>的时候，就可以通过lambda表达式来创建该接口的对象。</p>
+<blockquote>
+<p>函数式接口的定义：任何接口，如果只包含唯一的一个抽象方法，那么它就是一个函数式接口。</p>
+</blockquote>
+<p>lambda表达式的演变过程如下：</p>
+<p><img src="http://image.weibear.top//Untitled%20Diagram.jpg" alt="Untitled Diagram"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo2</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-26 18:21
+</span><span class="cm"> **/</span>
+
+
+<span class="c1">// 1. 方式一：外部类
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Like1</span> <span class="kd">implements</span> <span class="n">ILike</span><span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Like1.doSomething&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestLambda</span> <span class="o">{</span>
+    <span class="c1">// 方式二、静态内部类
+</span><span class="c1"></span>    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Like2</span> <span class="kd">implements</span> <span class="n">ILike</span><span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Like2.doSomething&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ILike</span> <span class="n">iLike</span><span class="o">;</span>
+        <span class="n">iLike</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Like1</span><span class="o">();</span>
+        <span class="n">iLike</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Like2</span><span class="o">();</span>
+        <span class="c1">// 方式三：方法内部类
+</span><span class="c1"></span>        <span class="kd">class</span> <span class="nc">Like3</span> <span class="kd">implements</span> <span class="n">ILike</span><span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Like3.doSomething&#34;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">iLike</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Like3</span><span class="o">();</span>
+
+        <span class="c1">// 方式四：匿名内部类
+</span><span class="c1"></span>        <span class="n">iLike</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ILike</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Like4.doSomething&#34;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+
+        <span class="c1">// 方式5；lambda函数式编程
+</span><span class="c1"></span>        <span class="n">iLike</span> <span class="o">=</span> <span class="o">()-&gt;{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;TestLambda.main&#34;</span><span class="o">);</span>
+        <span class="o">};</span>
+        <span class="n">iLike</span><span class="o">.</span><span class="na">doSomething</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">interface</span> <span class="nc">ILike</span><span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">doSomething</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>总结：</p>
+<ol>
+<li>lambda表达式只能有一行代码的情况下才能简化为一行，如果有多行，那么就用代码块包裹。</li>
+<li>前提是接口为函数式接口</li>
+<li>多个参数也可以去掉参数类型，要去掉就都去掉，且必须加上括号</li>
+</ol>
+</blockquote>
+<h2 id="3-静态代理">3. 静态代理</h2>
+<p>这边使用婚礼和婚庆公司来举例子，要结婚的对象需要举行婚礼，但是关于婚礼的安排是十分复杂的，所以他们就将婚礼的安排工作委托给了婚庆公司进行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.bk.demo2</span><span class="o">;</span>
+
+<span class="cm">/**
+</span><span class="cm"> * @author BK
+</span><span class="cm"> * @email bearkchan@gmail.com
+</span><span class="cm"> * @create 2020-10-26 21:31
+</span><span class="cm"> **/</span>
+
+
+<span class="c1">// 静态代理案例
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StaticProxy</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">new</span> <span class="n">MarrayCompany</span><span class="o">(</span><span class="k">new</span> <span class="n">You</span><span class="o">()).</span><span class="na">haveMarray</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="c1">// 结婚接口
+</span><span class="c1"></span><span class="kd">interface</span> <span class="nc">Marry</span> <span class="o">{</span>
+    <span class="c1">// 举行婚礼
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">haveMarray</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// 实际结婚对象
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">You</span> <span class="kd">implements</span> <span class="n">Marry</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">haveMarray</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;You.haveMarray&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="c1">// 代理的婚庆公司
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">MarrayCompany</span> <span class="kd">implements</span> <span class="n">Marry</span> <span class="o">{</span>
+    <span class="c1">// 需要代理的对象--&gt;实际对象You
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Marry</span> <span class="n">you</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">MarrayCompany</span><span class="o">(</span><span class="n">Marry</span> <span class="n">you</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">you</span> <span class="o">=</span> <span class="n">you</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">haveMarray</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">before</span><span class="o">();</span>
+        <span class="c1">// 实际对象的结婚过程
+</span><span class="c1"></span>        <span class="n">you</span><span class="o">.</span><span class="na">haveMarray</span><span class="o">();</span>
+        <span class="n">after</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MarrayCompany.before&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;MarrayCompany.after&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由上面的例子可以看出，婚庆公司MarrayCompany和结婚对象You都实现了Marry婚礼接口，不同的是在代理的婚庆公司类中，有一个实际结婚的成员变量you。</p>
+<h3 id="静态代理的总结">静态代理的总结：</h3>
+<ol>
+<li>真实对象和代理对象都要实现同一个接口</li>
+<li>代理对象要代理实际角色</li>
+<li>代理对象可以做很多真实对象做不了的事情</li>
+<li>真实对象可以专注做自己的事情</li>
+</ol>
+<p>实际上，java中多线程的实现也是基于静态代理的。由上面的例子可以和线程的创建进行对比：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 线程的创建
+</span><span class="c1"></span><span class="k">new</span> <span class="n">Thread</span><span class="o">(()-&gt;</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;线程创建了&#34;</span><span class="o">)).</span><span class="na">start</span><span class="o">();</span>
+<span class="c1">// 婚庆公司代理婚礼
+</span><span class="c1"></span><span class="k">new</span> <span class="n">MarrayCompany</span><span class="o">(</span><span class="k">new</span> <span class="n">You</span><span class="o">()).</span><span class="na">haveMarray</span><span class="o">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>这里的Thread类就相当于代理对象，它也继承了Runnable接口，真实对象也是一个实现了Runnable接口的lambda表达式，通过调用代理对象的start()方法，创建了新的线程并且实现了真实对象的功能。</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/java/">java</a>
+          <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/002-java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Java基础知识整理</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/004-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/">
+            <span class="next-text nav-default">Java时间日期常用类的使用</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:bearkchan@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://github.com/bearkchan" class="iconfont icon-github" title="github"></a>
+  <a href="https://bearkchan.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Bearkchan-<a href='https://beian.miit.gov.cn'>苏ICP备2020053789号</a></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

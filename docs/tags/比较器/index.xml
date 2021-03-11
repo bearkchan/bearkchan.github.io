@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>比较器 on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/%E6%AF%94%E8%BE%83%E5%99%A8/</link>
+    <description>Recent content in 比较器 on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/%E6%AF%94%E8%BE%83%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java枚举类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/006-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/006-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>枚举类的实现有以下两种方式： JDK5.0之前需要自定义枚举类 JDK5.0新增的enum关键词用于定义枚举类 1. 自定义枚举类 自定义枚举类需要具有</description>
+    </item>
+    
+    <item>
+      <title>Java比较器的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/005-java%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/005-java%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>在java中实现对象排序的方式有两种： 自然排序：java.lang.Comparable 定制排序：java.util.Comparator 1.</description>
+    </item>
+    
+  </channel>
+</rss>

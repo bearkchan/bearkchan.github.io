@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/categories/java/</link>
+    <description>Recent content in java on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 20 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java中String相关类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 20 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. 概述 String类被声明为final的，不可被继承。 String类实现了Serializable接口：表示字符串是可以被序列化的。 Stri</description>
+    </item>
+    
+    <item>
+      <title>Java集合的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/002-%E9%9B%86%E5%90%88%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Wed, 11 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/002-%E9%9B%86%E5%90%88%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. Java容器有哪些 Java容器可以分为三类：数组、Collection和Map，它们的特点有： 数组：长度确定，元素类型确定。 Collect</description>
+    </item>
+    
+    <item>
+      <title>Java8常用新特性</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/012-java8%E6%96%B0%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/012-java8%E6%96%B0%E7%89%B9%E6%80%A7/</guid>
+      <description>Java8新特性概述 最重要的就是Lambda表达式和Stream API。 Lambda表达式 使用前后对比 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19</description>
+    </item>
+    
+    <item>
+      <title>Java中IO类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/009-io%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/009-io%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>File类的使用 File类的理解 File类的一个对象，代表一个文件或者一个文件目录（文件夹）。 File类声明在java.io包下。 File类</description>
+    </item>
+    
+    <item>
+      <title>Java中泛型的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/008-%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/008-%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>泛型的理解 泛型的概念 所谓泛型，就是允也称为许在定义类、接口时通过一个标识表示类中的某个属性的类型或者是某个方法的返回值及参数类型。这个类型参</description>
+    </item>
+    
+    <item>
+      <title>Java中注解的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/007-%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/007-%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. JDK中的元注解 所谓的元注解是用于修饰其他Annotation的。 JDK5.0提供了四大标准的元注解，分别是： Retention Target Document Inhreited 1.1 Retention 只能用于修饰一个</description>
+    </item>
+    
+    <item>
+      <title>Java中网络编程基础知识介绍</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/010-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/010-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/</guid>
+      <description>InetAddress类的使用 实现网络通信需要解决的两个问题 如果准确地定位网络上一台或多台主机；定位主机上的特定的应用。 找到主机后如何可靠高</description>
+    </item>
+    
+    <item>
+      <title>Java之JDBC使用</title>
+      <link>https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/001-jdbc/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/001-jdbc/</guid>
+      <description>第1章：JDBC概述 1.1 数据的持久化 持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应</description>
+    </item>
+    
+    <item>
+      <title>Java反射机制</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/011-%E5%8F%8D%E5%B0%84/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/011-%E5%8F%8D%E5%B0%84/</guid>
+      <description>反射的概述 关于反射的主要内容 Java反射机制概述 理解Class类并获取Class实例 类的家在与ClassLoader的理解 创建运行时类的对象</description>
+    </item>
+    
+    <item>
+      <title>Java基础知识整理</title>
+      <link>https://bearkchan.github.io/post/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/002-java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/002-java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</guid>
+      <description>001- 局部变量和成员变量的区别 在java中局部变量没有初始值,而成员变量有初始值。 002- Integer内部自动装箱范围为-128-127的内部细节 查</description>
+    </item>
+    
+    <item>
+      <title>Java多线程</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/001-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/001-%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>1. java创建线程的三种方式 Thread(class)：继承Thread类 Thread类本质也是继承了Runnable接口 ⭐Runnable</description>
+    </item>
+    
+    <item>
+      <title>Java时间日期常用类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/004-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/004-%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. Java中时间日期API分类 JDK8.0之前 System.currentTimeMillis()：获取当前系统时间戳 Date类： java.</description>
+    </item>
+    
+    <item>
+      <title>Java枚举类的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/006-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/006-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>枚举类的实现有以下两种方式： JDK5.0之前需要自定义枚举类 JDK5.0新增的enum关键词用于定义枚举类 1. 自定义枚举类 自定义枚举类需要具有</description>
+    </item>
+    
+    <item>
+      <title>Java比较器的使用</title>
+      <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/005-java%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/005-java%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>在java中实现对象排序的方式有两种： 自然排序：java.lang.Comparable 定制排序：java.util.Comparator 1.</description>
+    </item>
+    
+    <item>
+      <title>Java花边知识</title>
+      <link>https://bearkchan.github.io/post/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/001-java%E8%8A%B1%E8%BE%B9%E7%9F%A5%E8%AF%86/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/001-java%E8%8A%B1%E8%BE%B9%E7%9F%A5%E8%AF%86/</guid>
+      <description>《浪潮之巅》和《数学之美》 Java技术体系包括四个部分： Java程序设计语言 各种平台上的Java虚拟机（JVM） Java API类库 一系列的辅助工具</description>
+    </item>
+    
+  </channel>
+</rss>

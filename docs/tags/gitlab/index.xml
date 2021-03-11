@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gitlab on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/tags/gitlab/</link>
+    <description>Recent content in gitlab on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 02 Mar 2020 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/tags/gitlab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gitlab与gitflow结合使用流程</title>
+      <link>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/002-gitlab%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B/</link>
+      <pubDate>Mon, 02 Mar 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/002-gitlab%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B/</guid>
+      <description>1. 安装git-flow 打开mac终端，默认已安装brew，使用以下命令： 1 brew install git-flow 2. gitlab上创建空项目 创建完项目后，添加项目成员，设置成</description>
+    </item>
+    
+  </channel>
+</rss>
