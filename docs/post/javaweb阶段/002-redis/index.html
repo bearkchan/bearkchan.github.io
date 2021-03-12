@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Redis的基本使用">
 <meta itemprop="description" content="1. 分布式数据库CAP原理 1.1 传统的ACID A (Atomicity) 原子性 C (Consistency) 一致性 I (Isolation) 独立性 D (Durability) 持久性 1、A (Atomicity) 原子性 原子性很容易理解，也就是说事务里的所有操作要么"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
-<meta itemprop="wordCount" content="9672">
+<meta itemprop="wordCount" content="12263">
 <meta itemprop="keywords" content="redis,jeudis," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Redis的基本使用"/>
 <meta name="twitter:description" content="1. 分布式数据库CAP原理 1.1 传统的ACID A (Atomicity) 原子性 C (Consistency) 一致性 I (Isolation) 独立性 D (Durability) 持久性 1、A (Atomicity) 原子性 原子性很容易理解，也就是说事务里的所有操作要么"/>
@@ -132,8 +132,8 @@
         <div class="post-category">
             <a href="/categories/redis/"> redis </a>
             </div>
-          <span class="more-meta"> 约 9672 字 </span>
-          <span class="more-meta"> 预计阅读 20 分钟 </span>
+          <span class="more-meta"> 约 12263 字 </span>
+          <span class="more-meta"> 预计阅读 25 分钟 </span>
         
       </div>
     </header>
@@ -192,8 +192,38 @@
             <li><a href="#66-小结">6.6 小结</a></li>
           </ul>
         </li>
-        <li><a href="#7-redis中的事务">7. Redis中的事务</a></li>
-        <li><a href="#redis常见问题">Redis常见问题</a>
+        <li><a href="#7-redis中的事务">7. Redis中的事务</a>
+          <ul>
+            <li><a href="#71-什么是事务">7.1 什么是事务？</a></li>
+            <li><a href="#72-redis中事务相关的常用命令">7.2 Redis中事务相关的常用命令</a></li>
+            <li><a href="#73-举例说明">7.3 举例说明</a></li>
+          </ul>
+        </li>
+        <li><a href="#8-watch监控">8. watch监控</a>
+          <ul>
+            <li><a href="#81-悲观锁和乐观锁的概念">8.1 悲观锁和乐观锁的概念</a></li>
+            <li><a href="#82-redis中watch指令">8.2 Redis中watch指令</a></li>
+          </ul>
+        </li>
+        <li><a href="#9-消息订阅机制一般不用">9. 消息订阅机制（一般不用）</a>
+          <ul>
+            <li><a href="#91-实例说明">9.1 实例说明</a></li>
+          </ul>
+        </li>
+        <li><a href="#10-redis的主从复制">10. Redis的主从复制</a>
+          <ul>
+            <li><a href="#101-如何配置主从复制">10.1 如何配置主从复制</a></li>
+            <li><a href="#102-主从复制常用三招">10.2 主从复制常用三招</a></li>
+            <li><a href="#103-复制原理">10.3 复制原理</a></li>
+            <li><a href="#104-主从复制的缺点">10.4 主从复制的缺点</a></li>
+          </ul>
+        </li>
+        <li><a href="#11-哨兵模式sentinel">11. 哨兵模式（sentinel）</a>
+          <ul>
+            <li><a href="#111-如何设置哨兵模式">11.1 如何设置哨兵模式</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-redis常见问题">12. Redis常见问题</a>
           <ul>
             <li><a href="#1-缓存雪崩">1. 缓存雪崩</a></li>
             <li><a href="#2-缓存穿透攻击">2. 缓存穿透（攻击）</a></li>
@@ -1085,7 +1115,292 @@ Redis 默认配置文件中提供了三个条件：</p>
 <p>当Redis中同时开启了RDB和AOF持久化策略时，Redis恢复时会默认使用AOF文件，如果AOF文件出现错误，则会直接提示数据恢复失败，而不会自动的去加载RDB数据。</p>
 </blockquote>
 <h2 id="7-redis中的事务">7. Redis中的事务</h2>
-<h2 id="redis常见问题">Redis常见问题</h2>
+<h3 id="71-什么是事务">7.1 什么是事务？</h3>
+<p>事务就是一次可以执行多条命令，原则是就是一系列命令的集合。且在一个队列中，一次性的，顺序性的，排他性的执行。</p>
+<h3 id="72-redis中事务相关的常用命令">7.2 Redis中事务相关的常用命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DISCARD</td>
+<td>取消事务，放弃执行事务块内的所有命令。</td>
+</tr>
+<tr>
+<td>EXEC</td>
+<td>执行所有事务块内的命令。</td>
+</tr>
+<tr>
+<td>MULTI</td>
+<td>标记一个事务块的开始。</td>
+</tr>
+<tr>
+<td>UNWATCH</td>
+<td>取消 WATCH 命令对所有 key 的监视。</td>
+</tr>
+<tr>
+<td>WATCH key [key …]</td>
+<td>监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-举例说明">7.3 举例说明</h3>
+<h4 id="1事务的正常执行流程">1）事务的正常执行流程</h4>
+<p><img src="http://cdn.bearkchan.top/image-20210312235549420.png" alt="image-20210312235549420"></p>
+<h4 id="2-放弃事务">2) 放弃事务</h4>
+<p><img src="http://cdn.bearkchan.top/image-20210312235421599.png" alt="image-20210312235421599"></p>
+<h4 id="3-全体连坐">3) 全体连坐</h4>
+<p>一个错误，全体连坐，都不执行</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313020047945.png" alt="image-20210313020047945"></p>
+<blockquote>
+<p>注意：在Redis中的事务实际上是一种伪事务，在exec执行后所产生的错误中，即使事务中有某个/某些命令在执行时产生了错误，事务中的其他命令仍然会继续执行。Redis在事务失败时不进行回滚，而是继续执行余下的命令。</p>
+</blockquote>
+<h4 id="4冤头债主">4）冤头债主</h4>
+<p>在Redis中将会对错误的执行语句抛出提示你。</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313020855616.png" alt="image-20210313020855616"></p>
+<h2 id="8-watch监控">8. watch监控</h2>
+<h3 id="81-悲观锁和乐观锁的概念">8.1 悲观锁和乐观锁的概念</h3>
+<ul>
+<li>
+<p><strong>悲观锁</strong>：悲观锁顾名思义，就是很悲观，即每次去数据库拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想要拿这个数据就会block直到它拿到锁为止。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。</p>
+</li>
+<li>
+<p><strong>乐观锁</strong>：顾名思义，就是很乐观，即每次去拿数据的时候都认为别人没有修改过数据，所以不会上锁，但是在更新的时候会判断一下此人在此期间别人有没有去修改过数据，因此会使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量。</p>
+<blockquote>
+<p>乐观锁策略:提交版本必须大于记录当前版本才能执行更新</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="82-redis中watch指令">8.2 Redis中watch指令</h3>
+<ul>
+<li>watch指令类似于乐观锁，提交事务时，如果key的已经被其他客户端改变，比如某个list已经被其他客户端push/poop过，整个事务都不会被执行。</li>
+<li>通过WATCH命令在事务执行之前监控了多个Keys，倘若在WATCH之后有任何Key的值发生了变化， EXEC命令执行的事务都将被放弃，同时返回Nullmulti-bulk应答以通知调用者事务执行失败。</li>
+</ul>
+<p><img src="http://cdn.bearkchan.top/image-20210313022059997.png" alt="image-20210313022059997"></p>
+<h2 id="9-消息订阅机制一般不用">9. 消息订阅机制（一般不用）</h2>
+<p>进程间的一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。</p>
+<p>下图展示了频道 channel1 ， 以及订阅这个频道的三个客户端 —— client2 、 client5 和 client1 之间的关系：</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313022324240.png" alt="image-20210313022324240"></p>
+<p>当有新消息通过 PUBLISH 命令发送给频道 channel1 时， 这个消息就会被发送给订阅它的三个客户端：</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313022336314.png" alt="image-20210313022336314"></p>
+<p><strong>常用命令：</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PSUBSCRIBE pattern [pattern …]</td>
+<td>订阅一个或多个符合给定模式的频道。</td>
+</tr>
+<tr>
+<td>PUBSUB subcommand [argument [argument …]]</td>
+<td>查看订阅与发布系统状态。</td>
+</tr>
+<tr>
+<td>PUBLISH channel message</td>
+<td>将信息发送到指定的频道。</td>
+</tr>
+<tr>
+<td>PUNSUBSCRIBE [pattern [pattern …]]</td>
+<td>退订所有给定模式的频道。</td>
+</tr>
+<tr>
+<td>SUBSCRIBE channel [channel …]</td>
+<td>订阅给定的一个或多个频道的信息。</td>
+</tr>
+<tr>
+<td>UNSUBSCRIBE [channel [channel …]]</td>
+<td>指退订给定的频道。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="91-实例说明">9.1 实例说明</h3>
+<p>以下实例演示了发布订阅是如何工作的。在我们实例中我们创建了订阅频道名为 redisChat:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">redis 127.0.0.1:6379&gt; SUBSCRIBE redisChat
+
+Reading messages... <span class="o">(</span>press Ctrl-C to quit<span class="o">)</span>
+1<span class="o">)</span> <span class="s2">&#34;subscribe&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;redisChat&#34;</span>
+3<span class="o">)</span> <span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在，我们先重新开启个 redis 客户端，然后在同一个频道 redisChat 发布两次消息，订阅者就能接收到消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">redis 127.0.0.1:6379&gt; PUBLISH redisChat <span class="s2">&#34;Redis is a great caching technique&#34;</span>
+
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+
+redis 127.0.0.1:6379&gt; PUBLISH redisChat <span class="s2">&#34;Learn redis by runoob.com&#34;</span>
+
+<span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+
+<span class="c1"># 订阅者的客户端会显示如下消息</span>
+1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;redisChat&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;Redis is a great caching technique&#34;</span>
+1<span class="o">)</span> <span class="s2">&#34;message&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;redisChat&#34;</span>
+3<span class="o">)</span> <span class="s2">&#34;Learn redis by runoob.com&#34;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>订阅多个通配符 *</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">PSUBSCRIBE new*
+</code></pre></td></tr></table>
+</div>
+</div><p>收取信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">PUBLISH new1 redis2015
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="10-redis的主从复制">10. Redis的主从复制</h2>
+<p>主从复制：主机负责写数据，从机同步主机的数据，只负责读取。有以下好处：</p>
+<ul>
+<li>读写分离</li>
+<li>容灾恢复</li>
+</ul>
+<h3 id="101-如何配置主从复制">10.1 如何配置主从复制</h3>
+<p>准则：配从不配主</p>
+<p>从库配置命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">slaveof 主库ip 主库端口号
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意：直接通过命令行配置后，每次与master断开后，都需要重新设置链接，除非将配置信息写入从库的<code>redis.conf</code>配置文件中：搜索<code>#### REPLICATION</code>区域进行设置。</p>
+</blockquote>
+<p>查看当前主从信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">info replication
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="102-主从复制常用三招">10.2 主从复制常用三招</h3>
+<h4 id="1一主二仆">1）一主二仆</h4>
+<p>初始化：</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313023505729.png" alt="image-20210313023505729"></p>
+<p>一个主机两个从机</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313023538745.png" alt="image-20210313023538745"></p>
+<p>有关问题：</p>
+<ul>
+<li><strong>切入点问题？slave1、slave2是从头开始复制还是从切入点开始复制?比如从k4进来，那之前的123是否也可以复制？</strong>
+答：从头开始复制；123也可以复制</li>
+<li><strong>从机是否可以写？set可否？</strong>
+答：从机不可写，不可set，主机可写</li>
+<li><strong>主机shutdown后情况如何？从机是上位还是原地待命</strong>
+答：从机还是原地待命（咸鱼翻身，还是咸鱼）</li>
+<li><strong>主机又回来了后，主机新增记录，从机还能否顺利复制？</strong>
+答：能</li>
+<li><strong>其中一台从机down后情况如何？依照原有它能跟上大部队吗？</strong>
+答：不能跟上，每次与master断开之后，都需要重新连接，除非你配置进redis.conf文件（具体位置：redis.conf搜寻#### REPLICATION ####）</li>
+</ul>
+<h4 id="2薪火相传">2）薪火相传</h4>
+<ul>
+<li>上一个Slave可以是下一个slave的Master，Slave同样可以接收其他 slaves的连接和同步请求，那么该slave作为了链条中下一个的master, 可以有效减轻master的写压力（奴隶的奴隶还是奴隶）</li>
+<li>中途变更转向：会清除之前的数据，重新建立拷贝最新的</li>
+<li><code>slaveof 新主库IP 新主库端口</code></li>
+</ul>
+<h4 id="3反客为主">3）反客为主</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">SLAVEOF no one
+</code></pre></td></tr></table>
+</div>
+</div><p>使当前数据库停止与其他数据库的同步，转成主数据库。</p>
+<h3 id="103-复制原理">10.3 复制原理</h3>
+<ul>
+<li>slave启动成功连接到master后会发送一个sync命令</li>
+<li>master接到命令启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令， 在后台进程执行完毕之后，master将传送整个数据文件到slave,以完成一次完全同步</li>
+<li>全量复制：而slave服务在接收到数据库文件数据后，将其存盘并加载到内存中。</li>
+<li>增量复制：Master继续将新的所有收集到的修改命令依次传给slave,完成同步</li>
+<li>但是只要是重新连接master，一次完全同步（全量复制)将被自动执行</li>
+</ul>
+<h3 id="104-主从复制的缺点">10.4 主从复制的缺点</h3>
+<p>由于所有的写操作都是先在Master上操作，然后同步更新到slave上，所以从Master同步到Slave机器有一定的延迟，当系统很繁忙的时候，延迟问题会更加严重，Slave机器数量的增加也会使这个问题更加严重。</p>
+<h2 id="11-哨兵模式sentinel">11. 哨兵模式（sentinel）</h2>
+<p>哨兵模式即为反客为主的自动版，能够在后台监控主机是否故障，如果出现了故障能够自动的在其他所有从机中进行投票选取出新的主机，将从库转换成主库。</p>
+<p><img src="http://cdn.bearkchan.top/image-20210313024318266.png" alt="image-20210313024318266"></p>
+<h3 id="111-如何设置哨兵模式">11.1 如何设置哨兵模式</h3>
+<p>需要在每个redis配置目录下新建<code>sentinel.conf</code>文件，配置内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sentinel monitor 被监控数据库名字<span class="o">(</span>自己起名字<span class="o">)</span> 127.0.0.1 <span class="m">6379</span> <span class="m">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>上面最后一个数字1，表示主机挂掉后salve投票看让谁接替成为主机，得票数为1后成为主机</p>
+</blockquote>
+<p>启动哨兵：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">redis-sentinel /sentinel.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>问题：如果之前挂了的master重启回来，会不会双master冲突？
+答： 不会，原master，变成slave</p>
+<h2 id="12-redis常见问题">12. Redis常见问题</h2>
 <h3 id="1-缓存雪崩">1. 缓存雪崩</h3>
 <p><img src="http://cdn.bearkchan.top/image-20210309052543310.png" alt="image-20210309052543310"></p>
 <p>大量缓存数据同时时间失效，导致用户直接发起大量的请求到数据库，产生瓶颈。</p>
