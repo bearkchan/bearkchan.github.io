@@ -138,7 +138,65 @@
       </div>
     </header>
 
-    
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-程序进程线程的理解">1. 程序、进程、线程的理解</a>
+          <ul>
+            <li><a href="#11-程序program">1.1 程序（program）</a></li>
+            <li><a href="#12-进程process">1.2 进程（process）</a></li>
+            <li><a href="#13-线程thread">1.3 线程（thread）</a></li>
+            <li><a href="#14-补充">1.4 补充</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-并行与并发">2. 并行与并发</a>
+          <ul>
+            <li><a href="#21-单核cpu与多核cpu的理解">2.1 单核CPU与多核CPU的理解</a></li>
+            <li><a href="#22-并行和并发的理解">2.2 并行和并发的理解</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-创建多线程的两种方式">3. 创建多线程的两种方式</a>
+          <ul>
+            <li><a href="#31-方式一继承thread类的方式">3.1 方式一：继承Thread类的方式</a></li>
+            <li><a href="#32-方式二实现runnable接口的方式">3.2 方式二：实现Runnable接口的方式</a></li>
+            <li><a href="#33-两种方式的对比">3.3 两种方式的对比</a></li>
+          </ul>
+        </li>
+        <li><a href="#4-thread类中的常用方法">4. THread类中的常用方法</a></li>
+        <li><a href="#5-thread的生命周期">5. Thread的生命周期</a></li>
+        <li><a href="#6-线程的同步机制">6. 线程的同步机制</a>
+          <ul>
+            <li><a href="#61-方式一同步代码块">6.1 方式一：同步代码块</a></li>
+            <li><a href="#62-方式二同步方法">6.2 方式二：同步方法</a></li>
+            <li><a href="#63-方式三lock锁---jdk50新增">6.3 方式三：Lock锁&mdash;JDK5.0新增</a></li>
+            <li><a href="#61-线程安全的单例模式懒汉式">6.1 线程安全的单例模式（懒汉式）</a></li>
+            <li><a href="#62-死锁问题">6.2 死锁问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#7-线程通信">7. 线程通信</a>
+          <ul>
+            <li><a href="#71-线程通信涉及到的三个方法">7.1 线程通信涉及到的三个方法</a></li>
+            <li><a href="#72-sleep和wait的异同">7.2 sleep()和wait()的异同</a></li>
+            <li><a href="#73-释放锁的操作">7.3 释放锁的操作</a></li>
+            <li><a href="#74-不会释放锁的操作">7.4 不会释放锁的操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#8-jdk50新增线程创建的方式">8. JDK5.0新增线程创建的方式</a>
+          <ul>
+            <li><a href="#81-新增方式一实现callable接口">8.1 新增方式一：实现Callable接口</a></li>
+            <li><a href="#82-新增方式二使用线程池的方式">8.2 新增方式二：使用线程池的方式</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
     <div class="post-content">
       <h2 id="1-程序进程线程的理解">1. 程序、进程、线程的理解</h2>
 <h3 id="11-程序program">1.1 程序（program）</h3>
@@ -1274,7 +1332,21 @@
 </ol>
     </div>
 
-    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Bearkchan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-13
+        
+    </span>
+  </p>
+  
+  
+</div>
 <footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/java/">java</a>
@@ -1294,6 +1366,10 @@
   </article>
         </div>
         
+
+  
+
+  
 
       </div>
     </main>
