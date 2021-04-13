@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 13 Mar 2021 03:01:11 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Apr 2021 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java知识点总结</title>
+      <link>https://bearkchan.github.io/post/java%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
+      <pubDate>Tue, 13 Apr 2021 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/java%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
+      <description>1. Spring中Ioc和AOP **IOC：**控制反转，其实是一种设计思想，指将原本程序中的对象之间的依赖关系交给IOC容器统一管理，并由其</description>
+    </item>
+    
     <item>
       <title>Java中多线程的使用</title>
       <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/001-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
@@ -18,11 +27,20 @@
     </item>
     
     <item>
-      <title>Redis的基本使用</title>
-      <link>https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/002-redis/</link>
+      <title>MySQL的基本使用</title>
+      <link>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/001-mysql/</link>
       <pubDate>Sat, 13 Mar 2021 00:29:44 +0800</pubDate>
       
-      <guid>https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/002-redis/</guid>
+      <guid>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/001-mysql/</guid>
+      <description>1. MyISAM和InnoDB的区别 MyISAM：MySQL5.5之前的默认引擎。不支持**事物和行级锁。**只支持表级锁（一锁就是锁住整个表</description>
+    </item>
+    
+    <item>
+      <title>Redis的基本使用</title>
+      <link>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/002-redis/</link>
+      <pubDate>Sat, 13 Mar 2021 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/002-redis/</guid>
       <description>1. 分布式数据库CAP原理 1.1 传统的ACID A (Atomicity) 原子性 C (Consistency) 一致性 I (Isolation) 独立性 D (Durability) 持久性 1、A (Atomicity) 原子性 原子性很容易理解，也就是说事务里的所有操作要么</description>
     </item>
     

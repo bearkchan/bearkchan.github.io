@@ -90,6 +90,8 @@ Redis 与其他 key - value 缓存产品有以下三个特点：
 - 发布、订阅消息系统
 - 定时器、计数器
 
+![image-20210313205000768](http://cdn.bearkchan.top/image-20210313205000768.png)
+
 ### 2.3 常用知识
 
 - 默认16个数据库，类似数组下表从零开始，初始默认使用零号库，可在配置文件配置
@@ -97,6 +99,12 @@ Redis 与其他 key - value 缓存产品有以下三个特点：
 - `dbsize`查看当前数据库的key的数量
 - `flushdb`：清空当前库
 - `flushall`；通杀全部库
+
+### 2.4 Redis的单线程+多路IO复用技术
+
+多路复用是指使用一个线程来检查多个文件描述符（Socket）的就绪状态，比如调用select和poll函数，传入多个文件描述符，如果有一个文件描述符就绪，则返回，否则阻塞直到超时。
+
+![image-20210313204844592](http://cdn.bearkchan.top/image-20210313204844592.png)
 
 ## 3. Redis的五大数据类型
 
@@ -772,7 +780,7 @@ redis-sentinel /sentinel.conf
 
 ![image-20210309052740819](http://cdn.bearkchan.top/image-20210309052740819.png)
 
-用户恶意请求数据，例如ID为负数，不存在缓存中，夜不存在在数据库中，会造成缓存穿透攻击。
+用户恶意请求数据，例如ID为负数，不存在缓存中，也不存在在数据库中，会造成缓存穿透攻击。
 
 **解决方案：**
 
@@ -793,3 +801,11 @@ redis-sentinel /sentinel.conf
 - 分布式锁
   - zookeeper
   - redis实现
+
+
+
+## 13. Redis秒杀问题
+
+可以使用lua脚本实现Redis的库存秒杀高并发问题。
+
+https://blog.csdn.net/limingcai168/article/details/84977281

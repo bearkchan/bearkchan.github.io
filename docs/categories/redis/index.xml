@@ -10,10 +10,10 @@
     <lastBuildDate>Sat, 13 Mar 2021 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/categories/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis的基本使用</title>
-      <link>https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/002-redis/</link>
+      <link>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/002-redis/</link>
       <pubDate>Sat, 13 Mar 2021 00:29:44 +0800</pubDate>
       
-      <guid>https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/002-redis/</guid>
+      <guid>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/002-redis/</guid>
       <description>1. 分布式数据库CAP原理 1.1 传统的ACID A (Atomicity) 原子性 C (Consistency) 一致性 I (Isolation) 独立性 D (Durability) 持久性 1、A (Atomicity) 原子性 原子性很容易理解，也就是说事务里的所有操作要么</description>
     </item>
     

@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 13 Mar 2021 03:01:11 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Apr 2021 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>java</title>
       <link>https://bearkchan.github.io/categories/java/</link>
-      <pubDate>Sat, 13 Mar 2021 03:01:11 +0800</pubDate>
+      <pubDate>Tue, 13 Apr 2021 00:29:44 +0800</pubDate>
       
       <guid>https://bearkchan.github.io/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>https://bearkchan.github.io/categories/mysql/</link>
+      <pubDate>Sat, 13 Mar 2021 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/categories/mysql/</guid>
       <description></description>
     </item>
     

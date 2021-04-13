@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on BK - Coding the world</title>
+    <link>https://bearkchan.github.io/categories/mysql/</link>
+    <description>Recent content in mysql on BK - Coding the world</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>Bearkchan-&lt;a href=&#39;https://beian.miit.gov.cn&#39;&gt;苏ICP备2020053789号&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 13 Mar 2021 00:29:44 +0800</lastBuildDate><atom:link href="https://bearkchan.github.io/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL的基本使用</title>
+      <link>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/001-mysql/</link>
+      <pubDate>Sat, 13 Mar 2021 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/001-mysql/</guid>
+      <description>1. MyISAM和InnoDB的区别 MyISAM：MySQL5.5之前的默认引擎。不支持**事物和行级锁。**只支持表级锁（一锁就是锁住整个表</description>
+    </item>
+    
+  </channel>
+</rss>
