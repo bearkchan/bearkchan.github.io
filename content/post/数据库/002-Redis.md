@@ -485,7 +485,7 @@ AOF（Append Only File）是以日志的形式来记录每个写操作，将Redi
 
 - 启动：
   - 修改默认的appendonly no，改为yes
-- 恢复AOP文件：
+- 恢复AOF文件：
   - 将有数据的append_only.aof文件复制一份到对应的目录。重启redis然后重新加载。
 - 异常恢复被写坏的AOF文件：
   - 使用`redis-check-aof --fix`命令进行恢复aof文件，然后重启redis重新加载aof文件。
