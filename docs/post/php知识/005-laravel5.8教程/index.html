@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
 
 
 <link rel="canonical" href="https://bearkchan.github.io/post/php%E7%9F%A5%E8%AF%86/005-laravel5.8%E6%95%99%E7%A8%8B/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Laravel5.8教程">
 <meta itemprop="description" content="一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
-<meta itemprop="wordCount" content="7616">
+<meta itemprop="wordCount" content="7652">
 <meta itemprop="keywords" content="php,larval," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Laravel5.8教程"/>
 <meta name="twitter:description" content="一、目录结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 projectName ｜- app ｜- http ｜ - Controller：控制器所在目录 ｜ - User.php：默认模型文件 ｜- conf"/>
@@ -132,7 +132,7 @@
         <div class="post-category">
             <a href="/categories/php/"> php </a>
             </div>
-          <span class="more-meta"> 约 7616 字 </span>
+          <span class="more-meta"> 约 7652 字 </span>
           <span class="more-meta"> 预计阅读 16 分钟 </span>
         
       </div>
@@ -223,7 +223,7 @@
             <li><a href="#2-数据表填充器">2. 数据表填充器</a></li>
           </ul>
         </li>
-        <li><a href="#十三命令行">十三、命令行</a></li>
+        <li><a href="#十三命令行artisan">十三、命令行artisan</a></li>
         <li><a href="#十四ajax">十四、ajax</a></li>
       </ul>
     </li>
@@ -299,8 +299,7 @@
 <pre class="chroma"><code class="language-php" data-lang="php"><span class="nx">php</span> <span class="nx">aritsan</span> <span class="nx">route</span><span class="o">:</span><span class="k">list</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img src="images/image-20200825203712972.png" alt="image-20200825203712972"></p>
-<h3 id="3-路由别名">3. 路由别名</h3>
+</div><h3 id="3-路由别名">3. 路由别名</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -446,7 +445,6 @@
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="2-命名规则">2. 命名规则</h3>
-<p><img src="images/image-20200825230855217.png" alt="image-20200825230855217" style="zoom:150%;" /></p>
 <h3 id="3-展示视图方法">3. 展示视图方法</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1312,7 +1310,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>填充器的执行操作没有回滚一说，没有删除。如果需要回滚，则可以手动清空对应的数据表。</strong></p>
-<h2 id="十三命令行">十三、命令行</h2>
+<h2 id="十三命令行artisan">十三、命令行artisan</h2>
 <p>常用命令行操作：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1330,9 +1328,17 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">php artisan make:controller
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建控制器</span>
+php artisan make:controller User<span class="se">\L</span>oginController
+<span class="c1"># 创建资源控制器</span>
+php artisan make:controller User<span class="se">\P</span>ersonController --resource
+<span class="c1"># 创建模型</span>
 php artisan make:model
 php artisan make:migration
 php artisan make:seeder
@@ -1341,7 +1347,7 @@ php artisan migrate
 php artisan migrate:install
 php artisan migrate:rollback
 
-php artisan db:seed --class=className
+php artisan db:seed --class<span class="o">=</span>className
 
 php artisan serve
 

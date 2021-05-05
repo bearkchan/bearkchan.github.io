@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
 
 
 <link rel="canonical" href="https://bearkchan.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93/001-mysql/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,7 +49,7 @@
 <meta itemprop="name" content="MySQL的基本使用">
 <meta itemprop="description" content="1. MyISAM和InnoDB的区别 MyISAM：MySQL5.5之前的默认引擎。不支持**事物和行级锁。**只支持表级锁（一锁就是锁住整个表"><meta itemprop="datePublished" content="2021-03-13T00:29:44&#43;08:00" />
 <meta itemprop="dateModified" content="2021-03-13T00:29:44&#43;08:00" />
-<meta itemprop="wordCount" content="1494">
+<meta itemprop="wordCount" content="1528">
 <meta itemprop="keywords" content="mysql,索引,数据库," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MySQL的基本使用"/>
 <meta name="twitter:description" content="1. MyISAM和InnoDB的区别 MyISAM：MySQL5.5之前的默认引擎。不支持**事物和行级锁。**只支持表级锁（一锁就是锁住整个表"/>
@@ -132,8 +132,8 @@
         <div class="post-category">
             <a href="/categories/mysql/"> mysql </a>
             </div>
-          <span class="more-meta"> 约 1494 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 1528 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
         
       </div>
     </header>
@@ -263,10 +263,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">user</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="n">xx</span> <span class="k">and</span> <span class="n">city</span><span class="o">=</span><span class="n">xx</span> <span class="p">;</span> <span class="err">／／可以命中索引</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">user</span> <span class="k">where</span> <span class="n">name</span><span class="o">=</span><span class="n">xx</span> <span class="p">;</span> <span class="o">//</span> <span class="err">可以命中索引</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">user</span> <span class="k">where</span> <span class="n">city</span><span class="o">=</span><span class="n">xx</span> <span class="p">;</span> <span class="o">//</span> <span class="err">无法命中索引</span>  
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">xx</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="n">xx</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="err">／／可以命中索引</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">xx</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">可以命中索引</span><span class="w">
+</span><span class="w"></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">city</span><span class="o">=</span><span class="n">xx</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">无法命中索引</span><span class="w">  
+</span></code></pre></td></tr></table>
 </div>
 </div><p>这里需要注意的是，查询的时候如果两个条件都用上了，但是顺序不同，如 <code>city= xx and name ＝xx</code>，那么现在的查询引擎会自动优化为匹配联合索引的顺序，这样是能够命中索引的。</p>
 <h2 id="9-mysql添加索引">9. MySQL添加索引</h2>
@@ -276,8 +276,8 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">table_name</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span> <span class="o">`</span><span class="k">column</span><span class="o">`</span> <span class="p">)</span> 
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">table_name</span><span class="o">`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">`</span><span class="k">column</span><span class="o">`</span><span class="w"> </span><span class="p">)</span><span class="w"> 
+</span></code></pre></td></tr></table>
 </div>
 </div><p>2.添加UNIQUE(唯一索引)</p>
 <div class="highlight"><div class="chroma">
@@ -285,8 +285,8 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">table_name</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">UNIQUE</span> <span class="p">(</span> <span class="o">`</span><span class="k">column</span><span class="o">`</span> <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">table_name</span><span class="o">`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">`</span><span class="k">column</span><span class="o">`</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><p>3.添加INDEX(普通索引)</p>
 <div class="highlight"><div class="chroma">
@@ -294,8 +294,8 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">table_name</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="p">(</span> <span class="o">`</span><span class="k">column</span><span class="o">`</span> <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">table_name</span><span class="o">`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">index_name</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">`</span><span class="k">column</span><span class="o">`</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><p>4.添加FULLTEXT(全文索引)</p>
 <div class="highlight"><div class="chroma">
@@ -303,8 +303,8 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">table_name</span><span class="o">`</span> <span class="k">ADD</span> <span class="n">FULLTEXT</span> <span class="p">(</span> <span class="o">`</span><span class="k">column</span><span class="o">`</span><span class="p">)</span> 
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">table_name</span><span class="o">`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">`</span><span class="k">column</span><span class="o">`</span><span class="p">)</span><span class="w"> 
+</span></code></pre></td></tr></table>
 </div>
 </div><p>5.添加多列索引</p>
 <div class="highlight"><div class="chroma">
@@ -312,8 +312,8 @@
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">table_name</span><span class="o">`</span> <span class="k">ADD</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="p">(</span> <span class="o">`</span><span class="n">column1</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">column2</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">column3</span><span class="o">`</span> <span class="p">)</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">table_name</span><span class="o">`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">index_name</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">`</span><span class="n">column1</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">column2</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">column3</span><span class="o">`</span><span class="w"> </span><span class="p">)</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div>
     </div>

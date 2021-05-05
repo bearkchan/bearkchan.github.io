@@ -36,6 +36,15 @@
     </item>
     
     <item>
+      <title>第零章-计算机概论</title>
+      <link>https://bearkchan.github.io/post/%E9%B8%9F%E5%93%A5%E7%A7%81%E6%88%BF%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E9%9B%B6%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/</link>
+      <pubDate>Mon, 04 May 2020 00:29:44 +0800</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E9%B8%9F%E5%93%A5%E7%A7%81%E6%88%BF%E8%8F%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E7%AC%AC%E9%9B%B6%E7%AB%A0-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Java中String相关类的使用</title>
       <link>https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/003-string%E7%9B%B8%E5%85%B3%E5%B8%B8%E7%94%A8%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Fri, 20 Mar 2020 00:29:44 +0800</pubDate>
@@ -217,6 +226,15 @@
     
     <item>
       <title></title>
+      <link>https://bearkchan.github.io/post/docker/docker%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/docker/docker%E7%BD%91%E7%BB%9C/</guid>
+      <description>Docker中的网络模式 bridge host none</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://bearkchan.github.io/post/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -231,6 +249,15 @@
       
       <guid>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/003-nginx-%E9%85%8D%E7%BD%AE/</guid>
       <description>nginx 配置</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/004-shell%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://bearkchan.github.io/post/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9F%A5%E8%AF%86/004-shell%E8%84%9A%E6%9C%AC/</guid>
+      <description>shell脚本学习 一、什么是shell shell是一个程序，采用C语言编写，是用户和linux内核沟通的桥梁。它既是一种命令语言，又是一种解</description>
     </item>
     
   </channel>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
 
 
 <link rel="canonical" href="https://bearkchan.github.io/post/javaweb%E9%98%B6%E6%AE%B5/001-jdbc/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java之JDBC使用">
 <meta itemprop="description" content="第1章：JDBC概述 1.1 数据的持久化 持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应"><meta itemprop="datePublished" content="2020-03-02T00:29:44&#43;08:00" />
 <meta itemprop="dateModified" content="2020-03-02T00:29:44&#43;08:00" />
-<meta itemprop="wordCount" content="20884">
+<meta itemprop="wordCount" content="20954">
 <meta itemprop="keywords" content="java,jdbc," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java之JDBC使用"/>
 <meta name="twitter:description" content="第1章：JDBC概述 1.1 数据的持久化 持久化(persistence)：把数据保存到可掉电式存储设备中以供之后使用。大多数情况下，特别是企业级应"/>
@@ -132,7 +132,7 @@
         <div class="post-category">
             <a href="/categories/java/"> java </a>
             </div>
-          <span class="more-meta"> 约 20884 字 </span>
+          <span class="more-meta"> 约 20954 字 </span>
           <span class="more-meta"> 预计阅读 42 分钟 </span>
         
       </div>
@@ -746,9 +746,9 @@ driverClass=com.mysql.jdbc.Driver
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="nb">int</span> <span class="n">excuteUpdate</span><span class="p">(</span><span class="n">String</span> <span class="k">sql</span><span class="p">)</span><span class="err">：执行更新操作</span><span class="k">INSERT</span><span class="err">、</span><span class="k">UPDATE</span><span class="err">、</span><span class="k">DELETE</span>
-<span class="n">ResultSet</span> <span class="n">executeQuery</span><span class="p">(</span><span class="n">String</span> <span class="k">sql</span><span class="p">)</span><span class="err">：执行查询操作</span><span class="k">SELECT</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="nb">int</span><span class="w"> </span><span class="n">excuteUpdate</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="k">sql</span><span class="p">)</span><span class="err">：执行更新操作</span><span class="k">INSERT</span><span class="err">、</span><span class="k">UPDATE</span><span class="err">、</span><span class="k">DELETE</span><span class="w">
+</span><span class="w"></span><span class="n">ResultSet</span><span class="w"> </span><span class="n">executeQuery</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="k">sql</span><span class="p">)</span><span class="err">：执行查询操作</span><span class="k">SELECT</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -1597,11 +1597,11 @@ Grade:</p>
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">goods</span><span class="p">(</span>
-<span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
-<span class="n">NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="p">);</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">goods</span><span class="p">(</span><span class="w">
+</span><span class="w"></span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="n">NAME</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="p">);</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div><h4 id="521-实现层次一使用statement">5.2.1 实现层次一：使用Statement</h4>
 <div class="highlight"><div class="chroma">
@@ -2047,8 +2047,8 @@ Grade:</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">SELECT</span> <span class="o">@@</span><span class="n">tx_isolation</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -2058,8 +2058,8 @@ Grade:</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="kt">set</span>  <span class="n">transaction</span> <span class="n">isolation</span> <span class="n">level</span> <span class="k">read</span> <span class="n">committed</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="kt">set</span><span class="w">  </span><span class="n">transaction</span><span class="w"> </span><span class="n">isolation</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">committed</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -2069,8 +2069,8 @@ Grade:</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="kt">set</span> <span class="n">global</span> <span class="n">transaction</span> <span class="n">isolation</span> <span class="n">level</span> <span class="k">read</span> <span class="n">committed</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="kt">set</span><span class="w"> </span><span class="n">global</span><span class="w"> </span><span class="n">transaction</span><span class="w"> </span><span class="n">isolation</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">committed</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -2083,8 +2083,8 @@ Grade:</p>
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">create</span> <span class="k">user</span> <span class="n">tom</span> <span class="k">identified</span> <span class="k">by</span> <span class="s1">&#39;abc123&#39;</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">tom</span><span class="w"> </span><span class="k">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;abc123&#39;</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -2100,12 +2100,12 @@ Grade:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="c1">#授予通过网络方式登录的tom用户，对所有库所有表的全部权限，密码设为abc123.
-</span><span class="c1"></span><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="n">tom</span><span class="o">@</span><span class="s1">&#39;%&#39;</span>  <span class="k">identified</span> <span class="k">by</span> <span class="s1">&#39;abc123&#39;</span><span class="p">;</span> 
-    
- <span class="c1">#给tom用户使用本地命令行方式，授予atguigudb这个库下的所有表的插删改查的权限。
-</span><span class="c1"></span><span class="k">grant</span> <span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">,</span><span class="k">delete</span><span class="p">,</span><span class="k">update</span> <span class="k">on</span> <span class="n">atguigudb</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="n">tom</span><span class="o">@</span><span class="n">localhost</span> <span class="k">identified</span> <span class="k">by</span> <span class="s1">&#39;abc123&#39;</span><span class="p">;</span> 
-    
-</code></pre></td></tr></table>
+</span><span class="c1"></span><span class="k">grant</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="k">privileges</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">tom</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w">  </span><span class="k">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;abc123&#39;</span><span class="p">;</span><span class="w"> 
+</span><span class="w">
+</span><span class="w"> </span><span class="c1">#给tom用户使用本地命令行方式，授予atguigudb这个库下的所有表的插删改查的权限。
+</span><span class="c1"></span><span class="k">grant</span><span class="w"> </span><span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">,</span><span class="k">delete</span><span class="p">,</span><span class="k">update</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">atguigudb</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">tom</span><span class="o">@</span><span class="n">localhost</span><span class="w"> </span><span class="k">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;abc123&#39;</span><span class="p">;</span><span class="w"> 
+</span><span class="w">
+</span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>

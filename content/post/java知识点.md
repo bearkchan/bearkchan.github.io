@@ -388,7 +388,7 @@ RIGHT JOIN 右连接 以右表为主表，不满足on 条件的留在右表中�
 
 ## linux看日志的命令
 
-tail -f 10
+tail -f -n 10
 
 
 

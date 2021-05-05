@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
 
 
 <link rel="canonical" href="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/001-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,7 +49,7 @@
 <meta itemprop="name" content="Java中多线程的使用">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2021-03-13T03:01:11&#43;08:00" />
 <meta itemprop="dateModified" content="2021-03-13T03:01:11&#43;08:00" />
-<meta itemprop="wordCount" content="6100">
+<meta itemprop="wordCount" content="6127">
 <meta itemprop="keywords" content="java,锁,同步,多线程," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java中多线程的使用"/>
 <meta name="twitter:description" content=""/>
@@ -132,7 +132,7 @@
         <div class="post-category">
             <a href="/categories/java/"> java </a>
             </div>
-          <span class="more-meta"> 约 6100 字 </span>
+          <span class="more-meta"> 约 6127 字 </span>
           <span class="more-meta"> 预计阅读 13 分钟 </span>
         
       </div>
@@ -166,7 +166,7 @@
             <li><a href="#33-两种方式的对比">3.3 两种方式的对比</a></li>
           </ul>
         </li>
-        <li><a href="#4-thread类中的常用方法">4. THread类中的常用方法</a></li>
+        <li><a href="#4-thread类中的常用方法">4. Thread类中的常用方法</a></li>
         <li><a href="#5-thread的生命周期">5. Thread的生命周期</a></li>
         <li><a href="#6-线程的同步机制">6. 线程的同步机制</a>
           <ul>
@@ -433,7 +433,7 @@
 </div>
 </div><p>相同点：两种方式都在需要重写run()方法，将线程要执行的逻辑声明在run()中。</p>
 <p>目前两种方式，想要启动线程，都是调用的Thread类的start()。</p>
-<h2 id="4-thread类中的常用方法">4. THread类中的常用方法</h2>
+<h2 id="4-thread类中的常用方法">4. Thread类中的常用方法</h2>
 <ol>
 <li>start():启动当前线程；调用当前线程的run()</li>
 <li>run(): 通常需要重写Thread类中的此方法，将创建的线程要执行的操作声明在此方法中</li>
@@ -912,7 +912,7 @@
   <span class="kd">private</span> <span class="kd">static</span> <span class="n">Bank</span> <span class="n">instance</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
   <span class="kd">public</span> <span class="kd">static</span> <span class="n">Bank</span> <span class="nf">getInstance</span><span class="o">(){</span>
-    <span class="c1">//方式一：效率稍差
+    <span class="c1">//方式一：效率稍差，每个线程都需要先进入同步代码块，然后再拿到对象实例。
 </span><span class="c1"></span>    <span class="c1">//        synchronized (Bank.class) {
 </span><span class="c1"></span>    <span class="c1">//            if(instance == null){
 </span><span class="c1"></span>    <span class="c1">//

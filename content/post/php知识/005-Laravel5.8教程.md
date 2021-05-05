@@ -51,8 +51,6 @@ Route::group(["prefix"=>'user'],function(){
 php aritsan route:list
 ```
 
-![image-20200825203712972](images/image-20200825203712972.png)
-
 ### 3. 路由别名
 
 ```php
@@ -154,8 +152,6 @@ DB::select("sql语句");
 ```
 
 ### 2. 命名规则
-
-<img src="images/image-20200825230855217.png" alt="image-20200825230855217" style="zoom:150%;" />
 
 ### 3. 展示视图方法
 
@@ -792,12 +788,16 @@ php artisan db:seed --class=需要执行的种子文件名（不带.php）
 
 
 
-## 十三、命令行
+## 十三、命令行artisan
 
 常用命令行操作：
 
-```markdown
-php artisan make:controller
+```shell
+# 创建控制器
+php artisan make:controller User\LoginController
+# 创建资源控制器
+php artisan make:controller User\PersonController --resource
+# 创建模型
 php artisan make:model
 php artisan make:migration
 php artisan make:seeder

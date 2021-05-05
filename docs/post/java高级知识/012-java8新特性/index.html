@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.81.0 with theme even" />
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
 
 
 <link rel="canonical" href="https://bearkchan.github.io/post/java%E9%AB%98%E7%BA%A7%E7%9F%A5%E8%AF%86/012-java8%E6%96%B0%E7%89%B9%E6%80%A7/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.6a025d60334ccde9f765dedcf6936f4c2eb3ea8d22276e9f389bb2efc2d55e11.css" rel="stylesheet">
+<link href="/sass/main.min.cb68f97bc9cece255d217346d970e3c62623408634e500c330a62fadabbbe77c.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -1006,7 +1006,7 @@
 </span><span class="c1">//Employee的空参构造器：Employee()
 </span><span class="c1"></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">(){</span>
-  
+
   <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">sup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;()</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="n">Employee</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
@@ -1014,44 +1014,44 @@
     <span class="o">}</span>
   <span class="o">};</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;*******************&#34;</span><span class="o">);</span>
-  
+
   <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span>  <span class="n">sup1</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">();</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sup1</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
-  
+
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;*******************&#34;</span><span class="o">);</span>
-  
+
   <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span>  <span class="n">sup2</span> <span class="o">=</span> <span class="n">Employee</span> <span class="o">::</span> <span class="k">new</span><span class="o">;</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sup2</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
 <span class="o">}</span>
-  
+
 <span class="c1">//Function中的R apply(T t)
 </span><span class="c1"></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test2</span><span class="o">(){</span>
   <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">func1</span> <span class="o">=</span> <span class="n">id</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
   <span class="n">Employee</span> <span class="n">employee</span> <span class="o">=</span> <span class="n">func1</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1001</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">employee</span><span class="o">);</span>
-  
+
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;*******************&#34;</span><span class="o">);</span>
-  
+
   <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">func2</span> <span class="o">=</span> <span class="n">Employee</span> <span class="o">::</span> <span class="k">new</span><span class="o">;</span>
   <span class="n">Employee</span> <span class="n">employee1</span> <span class="o">=</span> <span class="n">func2</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1002</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">employee1</span><span class="o">);</span>
-  
+
 <span class="o">}</span>
-  
+
 <span class="c1">//BiFunction中的R apply(T t,U u)
 </span><span class="c1"></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test3</span><span class="o">(){</span>
   <span class="n">BiFunction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">func1</span> <span class="o">=</span> <span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">name</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">id</span><span class="o">,</span><span class="n">name</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">func1</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1001</span><span class="o">,</span><span class="s">&#34;Tom&#34;</span><span class="o">));</span>
-  
+
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;*******************&#34;</span><span class="o">);</span>
-  
+
   <span class="n">BiFunction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">func2</span> <span class="o">=</span> <span class="n">Employee</span> <span class="o">::</span> <span class="k">new</span><span class="o">;</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">func2</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">1002</span><span class="o">,</span><span class="s">&#34;Tom&#34;</span><span class="o">));</span>
-  
+
 <span class="o">}</span>
-  
+
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1082,13 +1082,13 @@
   <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">[]&gt;</span> <span class="n">func1</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">length</span><span class="o">];</span>
   <span class="n">String</span><span class="o">[]</span> <span class="n">arr1</span> <span class="o">=</span> <span class="n">func1</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">arr1</span><span class="o">));</span>
-  
+
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;*******************&#34;</span><span class="o">);</span>
-  
+
   <span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">[]&gt;</span> <span class="n">func2</span> <span class="o">=</span> <span class="n">String</span><span class="o">[]</span> <span class="o">::</span> <span class="k">new</span><span class="o">;</span>
   <span class="n">String</span><span class="o">[]</span> <span class="n">arr2</span> <span class="o">=</span> <span class="n">func2</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">arr2</span><span class="o">));</span>
-  
+
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1298,26 +1298,26 @@
 </span><span class="c1"></span>  <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
   <span class="c1">//练习：查询员工表中薪资大于7000的员工信息
 </span><span class="c1"></span>  <span class="n">stream</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getSalary</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">7000</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-   
+
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
   <span class="c1">//        limit(n)——截断流，使其元素不超过给定数量。
 </span><span class="c1"></span>  <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">limit</span><span class="o">(</span><span class="n">3</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
-   
+
   <span class="c1">//        skip(n) —— 跳过元素，返回一个扔掉了前 n 个元素的流。若流中元素不足 n 个，则返回一个空流。与 limit(n) 互补
 </span><span class="c1"></span>  <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">skip</span><span class="o">(</span><span class="n">3</span><span class="o">).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-   
+
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
   <span class="c1">//        distinct()——筛选，通过流所生成元素的 hashCode() 和 equals() 去除重复元素
-</span><span class="c1"></span>   
+</span><span class="c1"></span>
   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">1010</span><span class="o">,</span><span class="s">&#34;刘强东&#34;</span><span class="o">,</span><span class="n">40</span><span class="o">,</span><span class="n">8000</span><span class="o">));</span>
   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">1010</span><span class="o">,</span><span class="s">&#34;刘强东&#34;</span><span class="o">,</span><span class="n">41</span><span class="o">,</span><span class="n">8000</span><span class="o">));</span>
   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">1010</span><span class="o">,</span><span class="s">&#34;刘强东&#34;</span><span class="o">,</span><span class="n">40</span><span class="o">,</span><span class="n">8000</span><span class="o">));</span>
   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">1010</span><span class="o">,</span><span class="s">&#34;刘强东&#34;</span><span class="o">,</span><span class="n">40</span><span class="o">,</span><span class="n">8000</span><span class="o">));</span>
   <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Employee</span><span class="o">(</span><span class="n">1010</span><span class="o">,</span><span class="s">&#34;刘强东&#34;</span><span class="o">,</span><span class="n">40</span><span class="o">,</span><span class="n">8000</span><span class="o">));</span>
-   
+
   <span class="c1">//        System.out.println(list);
-</span><span class="c1"></span>   
+</span><span class="c1"></span>
   <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">distinct</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -1418,7 +1418,7 @@
   <span class="c1">//        map(Function f)——接收一个函数作为参数，将元素转换成其他形式或提取信息，该函数会被应用到每个元素上，并将其映射成一个新的元素。
 </span><span class="c1"></span>  <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;aa&#34;</span><span class="o">,</span> <span class="s">&#34;bb&#34;</span><span class="o">,</span> <span class="s">&#34;cc&#34;</span><span class="o">,</span> <span class="s">&#34;dd&#34;</span><span class="o">);</span>
   <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">str</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">()).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-   
+
   <span class="c1">//        练习1：获取员工姓名长度大于3的员工的姓名。
 </span><span class="c1"></span>  <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employees</span> <span class="o">=</span> <span class="n">EmployeeData</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">();</span>
   <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">namesStream</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">Employee</span><span class="o">::</span><span class="n">getName</span><span class="o">);</span>
@@ -1433,9 +1433,9 @@
   <span class="c1">//        flatMap(Function f)——接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流。
 </span><span class="c1"></span>  <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">characterStream</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">flatMap</span><span class="o">(</span><span class="n">StreamAPITest1</span><span class="o">::</span><span class="n">fromStringToStream</span><span class="o">);</span>
   <span class="n">characterStream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-   
+
 <span class="o">}</span>
-   
+
 <span class="c1">//将字符串中的多个字符构成的集合转换为对应的Stream的实例
 </span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="nf">fromStringToStream</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">){</span><span class="c1">//aa
 </span><span class="c1"></span>  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
@@ -1443,27 +1443,27 @@
     <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
   <span class="o">}</span>
   <span class="k">return</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
-   
+
 <span class="o">}</span>
-   
-   
-   
+
+
+
 <span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test3</span><span class="o">(){</span>
   <span class="n">ArrayList</span> <span class="n">list1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
   <span class="n">list1</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
   <span class="n">list1</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
   <span class="n">list1</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
-   
+
   <span class="n">ArrayList</span> <span class="n">list2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">();</span>
   <span class="n">list2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">4</span><span class="o">);</span>
   <span class="n">list2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
   <span class="n">list2</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">6</span><span class="o">);</span>
-   
+
   <span class="c1">//        list1.add(list2);
 </span><span class="c1"></span>  <span class="n">list1</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">list2</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list1</span><span class="o">);</span>
-   
+
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -1526,20 +1526,20 @@
   <span class="c1">//抛异常，原因:Employee没有实现Comparable接口
 </span><span class="c1"></span>  <span class="c1">//        List&lt;Employee&gt; employees = EmployeeData.getEmployees();
 </span><span class="c1"></span>  <span class="c1">//        employees.stream().sorted().forEach(System.out::println);
-</span><span class="c1"></span>   
-   
+</span><span class="c1"></span>
+
   <span class="c1">//        sorted(Comparator com)——定制排序
-</span><span class="c1"></span>   
+</span><span class="c1"></span>
   <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employees</span> <span class="o">=</span> <span class="n">EmployeeData</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">();</span>
   <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">sorted</span><span class="o">(</span> <span class="o">(</span><span class="n">e1</span><span class="o">,</span><span class="n">e2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-   
+
     <span class="kt">int</span> <span class="n">ageValue</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">e1</span><span class="o">.</span><span class="na">getAge</span><span class="o">(),</span><span class="n">e2</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>
     <span class="k">if</span><span class="o">(</span><span class="n">ageValue</span> <span class="o">!=</span> <span class="n">0</span><span class="o">){</span>
       <span class="k">return</span> <span class="n">ageValue</span><span class="o">;</span>
     <span class="o">}</span><span class="k">else</span><span class="o">{</span>
       <span class="k">return</span> <span class="o">-</span><span class="n">Double</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="n">e1</span><span class="o">.</span><span class="na">getSalary</span><span class="o">(),</span><span class="n">e2</span><span class="o">.</span><span class="na">getSalary</span><span class="o">());</span>
     <span class="o">}</span>
-   
+
   <span class="o">}).</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></td></tr></table>
@@ -1654,17 +1654,17 @@
 </span><span class="c1"></span><span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">(){</span>
   <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employees</span> <span class="o">=</span> <span class="n">EmployeeData</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">();</span>
-   
+
   <span class="c1">//        allMatch(Predicate p)——检查是否匹配所有元素。
 </span><span class="c1"></span>  <span class="c1">//          练习：是否所有的员工的年龄都大于18
 </span><span class="c1"></span>  <span class="kt">boolean</span> <span class="n">allMatch</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">allMatch</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">18</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">allMatch</span><span class="o">);</span>
-   
+
   <span class="c1">//        anyMatch(Predicate p)——检查是否至少匹配一个元素。
 </span><span class="c1"></span>  <span class="c1">//         练习：是否存在员工的工资大于 10000
 </span><span class="c1"></span>  <span class="kt">boolean</span> <span class="n">anyMatch</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">anyMatch</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getSalary</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">10000</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">anyMatch</span><span class="o">);</span>
-   
+
   <span class="c1">//        noneMatch(Predicate p)——检查是否没有匹配的元素。
 </span><span class="c1"></span>  <span class="c1">//          练习：是否存在员工姓“雷”
 </span><span class="c1"></span>  <span class="kt">boolean</span> <span class="n">noneMatch</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">noneMatch</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;雷&#34;</span><span class="o">));</span>
@@ -1675,9 +1675,9 @@
   <span class="c1">//        findAny——返回当前流中的任意元素
 </span><span class="c1"></span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employee1</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">().</span><span class="na">findAny</span><span class="o">();</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">employee1</span><span class="o">);</span>
-   
+
 <span class="o">}</span>
-   
+
 <span class="nd">@Test</span>
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test2</span><span class="o">(){</span>
   <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employees</span> <span class="o">=</span> <span class="n">EmployeeData</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">();</span>
@@ -1696,7 +1696,7 @@
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
   <span class="c1">//        forEach(Consumer c)——内部迭代
 </span><span class="c1"></span>  <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-   
+
   <span class="c1">//使用集合的遍历操作
 </span><span class="c1"></span>  <span class="n">employees</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
 <span class="o">}</span>
@@ -1754,8 +1754,8 @@
 </span><span class="c1"></span>  <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">,</span><span class="n">5</span><span class="o">,</span><span class="n">6</span><span class="o">,</span><span class="n">7</span><span class="o">,</span><span class="n">8</span><span class="o">,</span><span class="n">9</span><span class="o">,</span><span class="n">10</span><span class="o">);</span>
   <span class="n">Integer</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
-   
-   
+
+
   <span class="c1">//        reduce(BinaryOperator) ——可以将流中元素反复结合起来，得到一个值。返回 Optional&lt;T&gt;
 </span><span class="c1"></span>  <span class="c1">//        练习2：计算公司所有员工工资的总和
 </span><span class="c1"></span>  <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employees</span> <span class="o">=</span> <span class="n">EmployeeData</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">();</span>
@@ -1763,7 +1763,7 @@
   <span class="c1">//        Optional&lt;Double&gt; sumMoney = salaryStream.reduce(Double::sum);
 </span><span class="c1"></span>  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">sumMoney</span> <span class="o">=</span> <span class="n">salaryStream</span><span class="o">.</span><span class="na">reduce</span><span class="o">((</span><span class="n">d1</span><span class="o">,</span><span class="n">d2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sumMoney</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
-   
+
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
@@ -1811,16 +1811,16 @@
 <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test4</span><span class="o">(){</span>
   <span class="c1">//        collect(Collector c)——将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
 </span><span class="c1"></span>  <span class="c1">//        练习1：查找工资大于6000的员工，结果返回为一个List或Set
-</span><span class="c1"></span>   
+</span><span class="c1"></span>
   <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employees</span> <span class="o">=</span> <span class="n">EmployeeData</span><span class="o">.</span><span class="na">getEmployees</span><span class="o">();</span>
   <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employeeList</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getSalary</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">6000</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-   
+
   <span class="n">employeeList</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
   <span class="n">Set</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">employeeSet</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">getSalary</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">6000</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toSet</span><span class="o">());</span>
-   
+
   <span class="n">employeeSet</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-   
+
 <span class="o">}</span>
 </code></pre></td></tr></table>
 </div>
